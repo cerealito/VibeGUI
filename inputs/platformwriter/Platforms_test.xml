@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<Project name="vibe">
+     <Platform name="OLIVIER">    
+        <Environment>
+			<Variable name="PLATFORM_NAME" value="OLIVIER" toBatch="YES"/>
+			<Variable name="DSS_CM_HOST_WIN" value="10.226.200.26" toBatch="YES"/>
+			<Variable name="DSS_CM_PORT" value="5001" toBatch="YES"/>
+			<Variable name="PC_DSS" value="10.226.200.26" toBatch="YES"/>	
+			<Variable name="PC_CtrlStation" value="10.226.202.235" toBatch="YES"/>	
+			<Variable name="PC_CPSP" value="10.226.200.93" toBatch="YES"/>	
+			
+        </Environment>         
+        <Computer name="LinuxHost" address="${DSS_CM_HOST_WIN}" sleep="2" type="Linux">
+			<Appli name="CommunityMgr"/>
+			<Appli name="DOME"/>
+        </Computer>
+		<Computer name="LinuxHost" address="${PC_DSS}" sleep="0" type="Linux">
+			<Appli name="WP1_MODELS_10" type="LC"/>
+			<Appli name="WP1_MODELS_40" type="LC"/>
+			<!--<Appli name="H41H42_ACT" type="CPIOM"/>-->
+			<Appli name="H41H42_CPC" type="CPIOM"/>
+			<!--<Appli name="H41H42_VCS" type="CPIOM"/>-->
+			<!--<Appli name="WP2" type="LC"/>-->	
+        </Computer>
+		<Computer name="ControlStation" address="${PC_CtrlStation}" sleep="0" type="Windows">
+		<!--<Computer address="${PC_CtrlStation}" sleep="0" type="Windows">-->
+			<Appli name="PACK_SIDE1" type="Synoptic"/>
+		</Computer>
+		<Computer name="PC_CPSP" address="${PC_CPSP}" sleep="0" type="Windows">
+			<Appli name="CPSP" type="SESAME"/>
+		</Computer>
+     </Platform>
+	 <Platform name="ANAKIN">    
+        <Environment>
+			<Variable name="PLATFORM_NAME" value="OLIVIER" toBatch="YES"/>
+			<Variable name="DSS_CM_HOST_WIN" value="10.226.200.26" toBatch="YES"/>
+			<Variable name="DSS_CM_PORT" value="5001" toBatch="YES"/>
+			<Variable name="PC_DSS" value="10.226.200.26" toBatch="YES"/>	
+			<Variable name="PC_CtrlStation" value="10.226.202.235" toBatch="YES"/>	
+			
+        </Environment>         
+        <Computer name="ControlStation" address="${DSS_CM_HOST_WIN}" sleep="2" type="Linux">
+			<Appli name="CommunityMgr"/>
+			<Appli name="DOME"/>
+			
+        </Computer>
+		<Computer name="LinuxHost" address="${PC_DSS}" sleep="1" type="Linux">
+			<Appli name="WP1" type="LC"/>
+			<!--<Appli name="WP2" type="LC"/>-->	
+        </Computer>
+		<Computer name="ControlStation" address="${PC_CtrlStation}" sleep="1" type="Windows">
+			<Appli name="PACK_SIDE1" type="Synoptic"/>
+		</Computer>
+     </Platform>
+</Project>

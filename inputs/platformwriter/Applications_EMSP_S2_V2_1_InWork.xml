@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project name="vibe" win_root="B:" linux_root="/home/SIMU_VIBE">
+
+    <!-- Specific environment definition -->  
+   	<Environment>
+		<Variable name="CNX_VERSION" value="EMSP_S2_V2_1_InWork"/>
+	</Environment>
+	<!-- End Specific environment definition -->
+	
+	<!-- Local Controler definition -->
+	<LocalCtrl name="WP1_MODELS_10">		
+		<Model name="BAW_ENV" version="v6.0.0">
+			<Scheduling value="5"/>
+			<Library    name ="libBAW_ENV.so"/>
+			<IniFile    name ="BAW_ENV.init"/>
+			<AliasFile  name ="BAW_ENV.alias" />
+		</Model>
+		<Model name="BAM_LRU_1" version="v6.0.0">
+			<Scheduling value="10"/>
+			<Library name ="libBAM_LRU_1.so"/>
+			<IniFile name ="BAM_LRU1.init"/>
+			<AliasFile name ="BAM_LRU1.alias" />
+		</Model>
+		<Model name="BAM_LRU_2" version="v6.0.0">
+			<Scheduling value="10"/>
+			<Library name ="libBAM_LRU_2.so"/>
+			<IniFile name ="BAM_LRU2.init"/>
+			<AliasFile name ="BAM_LRU2.alias" />
+		</Model>
+   	</LocalCtrl>
+	
+	<LocalCtrl name="WP1_MODELS_40">		
+		<Model name="OHD_LRU_1" version="v5.0.0">
+			<Scheduling value="40"/>
+			<Library name ="libOHD_LRU_1.so"/>
+			<IniFile name ="OHD_LRU1.init"/>
+			<AliasFile name ="OHD_LRU1.alias" />
+		</Model>
+		<Model name="OHD_LRU_2" version="v5.0.0">
+			<Scheduling value="40"/>
+			<Library name ="libOHD_LRU_2.so"/>
+			<IniFile name ="OHD_LRU2.init"/>
+			<AliasFile name ="OHD_LRU2.alias" />
+		</Model>
+		<Model name="OHD_ENV" version="v4.0.0">
+			<Scheduling value="40"/>
+			<Library name ="libOHD_ENV.so"/>
+			<IniFile name ="OHD_ENV.init"/>
+			<AliasFile name ="OHD_ENV.alias" />
+		</Model>
+		<Model name="BAWO_CPI_H43" version="v6.0.0">
+			<Scheduling value="40"/>
+			<Library name ="libBAWO_CPI_H43.so"/>
+			<IniFile name ="BAWO_CPI_H43.init"/>
+			<AliasFile name ="BAWO_CPI_H43.alias" />
+		</Model>
+		<Model name="BAWO_CPI_H44" version="v6.0.0">
+			<Scheduling value="40"/>
+			<Library name ="libBAWO_CPI_H44.so"/>
+			<IniFile name ="BAWO_CPI_H44.init"/>
+			<AliasFile name ="BAWO_CPI_H44.alias" />
+		</Model>
+   	</LocalCtrl>
+	
+	<LocalCtrl name="WP2_MODELS">
+			<!-- CNV --> 
+		<Model name="CNV" version="v2.0" >
+			<AliasFile  name="CNV.alias" /> 
+			<IniFile    name="CNV.init" />
+			<Scheduling value="10"/>
+			<Library    name ="libA350XWB_CNV_model_AP2633.so"/>
+		</Model>				
+		<!-- AGS --> 
+		<Model name="AGS" version="v4.2.0" >
+			<AliasFile  name="AGS.alias" /> 
+			<IniFile    name="AGS.init" />
+			<Scheduling value="10"/>
+			<Library    name ="libAGS.so"/>
+		</Model>		
+		<!-- ASCU -->
+		<Model name="ASCU_1" version="v4.1.0" >
+			<AliasFile  name="ASCU1.alias" /> 
+			<IniFile    name="ASCU1.init" /> 
+			<Scheduling value="20"/>
+			<Library    name ="libARC_ASCU_1.so"/>
+		</Model>
+		<Model name="ASCU_2" version="v4.1.0" >
+			<AliasFile  name="ASCU2.alias" />
+			<IniFile    name="ASCU2.init"   />
+			<Scheduling value="20"/>
+			<Library    name ="libARC_ASCU_2.so"/>
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="WP2_H41_H42"> 
+		<Model name="ACT_CPI_1" version="v4.0.0">
+			<Scheduling value="50"/>
+			<Library    name ="libACT_CPI_1.so"/> 
+			<IniFile    name ="H41_ACT.init"/>
+			<AliasFile  name ="H41_ACT.alias" />
+		</Model>
+		<Model name="ACT_CPI_2" version="v4.0.0">
+			<Scheduling value="50"/>
+			<Library    name ="libACT_CPI_2.so"/> 
+			<IniFile    name ="H42_ACT.init"/>
+			<AliasFile  name ="H42_ACT.alias" />
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="WP2_WP4_CEP">
+		<Model name="CEP" version="v161">
+			<AliasFile  name="CEP.alias" />
+			<IniFile    name="CEP.init" /> 
+			<Scheduling value="10"/>
+			<Library    name ="libCEP.so"/>
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="WP3_MODELS">
+		<!-- CPC_VLV -->  
+		<Model name="CPC_VLV" version="v5.0.0" >
+			<AliasFile  name="CPC_VLV.alias" /> 
+			<IniFile    name="CPC_VLV.init" /> 
+			<Scheduling value="10"/>
+			<Library    name ="libCPC_VLV.so"/>
+		</Model>
+		<!-- CPC_CAB -->  
+		<Model name="CPC_CAB" version="v5.0.0">
+			<AliasFile  name="CPC_CAB.alias" /> 
+			<IniFile    name="CPC_CAB.init" /> 
+			<Scheduling value="10"/>
+			<Library    name ="libCPC_CAB.so"/>
+		</Model>
+		<!-- SACU -->  
+		<Model name="SACU" version="v5.0.0">
+			<AliasFile  name="SACU.alias" /> 
+			<IniFile    name="SACU.init" /> 
+			<Scheduling value="10"/>
+			<Library    name ="libCPC_SACU.so"/>
+		</Model>
+		<!-- OCU1 -->  
+		<Model name="OCU_1" version="v5.0.0">
+			<AliasFile  name="OCU1.alias" /> 
+			<IniFile    name="OCU1.init" /> 
+			<Scheduling value="10"/>
+			<Library    name ="libCPC_OCU_1.so"/>
+		</Model>
+		<!-- OCU2 -->  
+		<Model name="OCU_2" version="v5.0.0">
+			<AliasFile  name="OCU2.alias" /> 
+			<IniFile    name="OCU2.init" /> 
+			<Scheduling value="10"/>
+			<Library    name ="libCPC_OCU_2.so"/>
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="H41H42_CPC"> <!--3 CPC -->
+		<Environment name="GENDISCOCONFIG" value="${EXT_APP_PATH_UNIX}/MODELS/GENDISCO/v1.0/DSS_GenDiSCoConfig.cfg"/>
+		<Environment name="DSC_CONF_PATH" value="${EXT_APP_PATH_UNIX}/CPIOM/H41H42_CPC/v03.01.00/Software/cpiom_host/config"/>
+		<Environment name="DSC_MYINFOS_CONF_PATH" value="${EXT_APP_PATH_UNIX}/CPIOM/H41H42_CPC/v03.01.00/Software/cpiom_host/config"/>
+		<Model name="H41H42_CPC"> <!--For GenDiscoModel, no version needed -->
+			<Scheduling value="10"/>
+			<Library    name ="GenDiSCoModel"/> <!--For GenDiscoModel, dedicated name for library -->
+			<IniFile    name ="H41H42_CPC.init"/>
+			<AliasFile  name ="H41H42_CPC.alias" />
+		</Model>
+		<Model name="H41H42_CPC_FDEF" version="v03.00.00">
+			<Scheduling value="10"/>
+			<Library    name ="libFDEF_H41H42_CPC.so"/>
+			<IniFile    name ="H41H42_CPC_FDEF.init"/>
+			<AliasFile  name ="H41H42_CPC_FDEF.alias" />
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="CRDC_B12">	
+		<Model name="CRDC_A01" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A01.so" />
+			<AliasFile name="A01_B12.alias"/>
+			<IniFile name="A01_B12.init"/>
+		</Model>
+		<Model name="CRDC_A02" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A02.so" />
+			<AliasFile name="A02_B12.alias"/>
+			<IniFile name="A02_B12.init"/>
+		</Model>
+		<Model name="CRDC_A03" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A03.so" />
+			<AliasFile name="A03_B12.alias"/>
+			<IniFile name="A03_B12.init"/>
+		</Model>
+		<Model name="CRDC_A04" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A04.so" />
+			<AliasFile name="A04_B12.alias"/>
+			<IniFile name="A04_B12.init"/>
+		</Model>
+		<Model name="CRDC_A05" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A05.so" />
+			<AliasFile name="A05_B12.alias"/>
+			<IniFile name="A05_B12.init"/>
+		</Model>
+		<Model name="CRDC_A06" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A06.so" />
+			<AliasFile name="A06_B12.alias"/>
+			<IniFile name="A06_B12.init"/>
+		</Model>
+		<Model name="CRDC_A07" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A07.so" />
+			<AliasFile name="A07_B12.alias"/>
+			<IniFile name="A07_B12.init"/>
+		</Model>
+		<Model name="CRDC_A08" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A08.so" />
+			<AliasFile name="A08_B12.alias"/>
+			<IniFile name="A08_B12.init"/>
+		</Model>
+		<Model name="CRDC_A09" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A09.so" />
+			<AliasFile name="A09_B12.alias"/>
+			<IniFile name="A09_B12.init"/>
+		</Model>
+		<Model name="CRDC_A10" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A10.so" />
+			<AliasFile name="A10_B12.alias"/>
+			<IniFile name="A10_B12.init"/>
+		</Model>
+		<Model name="CRDC_A11" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A11.so" />
+			<AliasFile name="A11_B12.alias"/>
+			<IniFile name="A11_B12.init"/>
+		</Model>
+		<Model name="CRDC_A12" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A12.so" />
+			<AliasFile name="A12_B12.alias"/>
+			<IniFile name="A12_B12.init"/>
+		</Model>
+		<Model name="CRDC_A13" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A13.so" />
+			<AliasFile name="A13_B12.alias"/>
+			<IniFile name="A13_B12.init"/>
+		</Model>
+		<Model name="CRDC_A15" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A15.so" />
+			<AliasFile name="A15_B12.alias"/>
+			<IniFile name="A15_B12.init"/>
+		</Model>
+		<Model name="CRDC_A17" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_A17.so" />
+			<AliasFile name="A17_B12.alias"/>
+			<IniFile name="A17_B12.init"/>
+		</Model>
+		<Model name="CRDC_B01" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B01.so" />
+			<AliasFile name="B01_B12.alias"/>
+			<IniFile name="B01_B12.init"/>
+		</Model>
+		<Model name="CRDC_B02" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B02.so" />
+			<AliasFile name="B02_B12.alias"/>
+			<IniFile name="B02_B12.init"/>
+		</Model>
+		<Model name="CRDC_B03" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B03.so" />
+			<AliasFile name="B03_B12.alias"/>
+			<IniFile name="B03_B12.init"/>
+		</Model>
+		<Model name="CRDC_B04" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B04.so" />
+			<AliasFile name="B04_B12.alias"/>
+			<IniFile name="B04_B12.init"/>
+		</Model>
+		<Model name="CRDC_B05" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B05.so" />
+			<AliasFile name="B05_B12.alias"/>
+			<IniFile name="B05_B12.init"/>
+		</Model>
+		<Model name="CRDC_B06" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B06.so" />
+			<AliasFile name="B06_B12.alias"/>
+			<IniFile name="B06_B12.init"/>
+		</Model>
+		<Model name="CRDC_B08" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B08.so" />
+			<AliasFile name="B08_B12.alias"/>
+			<IniFile name="B08_B12.init"/>
+		</Model>
+		<Model name="CRDC_B09" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B09.so" />
+			<AliasFile name="B09_B12.alias"/>
+			<IniFile name="B09_B12.init"/>
+		</Model>
+		<Model name="CRDC_B10" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B10.so" />
+			<AliasFile name="B10_B12.alias"/>
+			<IniFile name="B10_B12.init"/>
+		</Model>
+		<Model name="CRDC_B11" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B11.so" />
+			<AliasFile name="B11_B12.alias"/>
+			<IniFile name="B11_B12.init"/>
+		</Model>
+		<Model name="CRDC_B12" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B12.so" />
+			<AliasFile name="B12_B12.alias"/>
+			<IniFile name="B12_B12.init"/>
+		</Model>
+		<Model name="CRDC_B14" version="B12">
+			<Scheduling value="10" />
+			<Library name="libCRDC_B14.so" />
+			<AliasFile name="B14_B12.alias"/>
+			<IniFile name="B14_B12.init"/>
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="EXT_MODELS">
+		<Model name="GAS" version="v1.6">
+			<AliasFile  name="GAS.alias" />
+			<IniFile    name="GAS.init" />
+			<IniFile    name="GAS.prf" />
+			<Scheduling value="40"/>
+			<Library    name ="libGAS_GenericAircraftSimulation.so"/>
+		</Model>
+		<Model name="SES" version="v1.5">
+			<AliasFile  name="SES.alias" />
+			<IniFile    name="SES.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libA350XWB_SES_model_AP2633.so"/>
+		</Model>
+		<Model name="ATM" version="v2.0">
+			<AliasFile  name="ATM.alias" />
+			<IniFile    name="ATM.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libATMO_ENV.so"/>
+		</Model>
+		<Model name="LGERS_CAB0" version="v1.3.1">
+			<AliasFile  name="LGERS_CAB0.alias" />
+			<IniFile    name="LGERS_CAB0.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libLGERS_CAB0.so"/>
+		</Model>
+		<Model name="ADIRS_CAB0" version="v1.2">
+			<AliasFile  name="ADIRS_CAB0.alias" />
+			<IniFile    name="ADIRS_CAB0.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libADIRS_CAB0.so"/>
+		</Model>
+		<Model name="ISIS_CAB0" version="v1.0">
+			<AliasFile  name="ISIS_CAB0.alias" />
+			<IniFile    name="ISIS_CAB0.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libISIS_CAB0.so"/>
+		</Model>
+		<Model name="DSCS_CAB0" version="v1.2">
+			<AliasFile  name="DSCS_CAB0.alias" />
+			<IniFile    name="DSCS_CAB0.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libDSCS_CAB0.so"/>
+		</Model>
+		<Model name="FGES_CAB0" version="v1.0">
+			<AliasFile  name="FGES_CAB0.alias" />
+			<IniFile    name="FGES_CAB0.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libFGES_CAB0.so"/>
+		</Model>
+		<Model name="AIPS_CAB0" version="v1.1">
+			<AliasFile  name="AIPS_CAB0.alias" />
+			<IniFile    name="AIPS_CAB0.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libAIPS_CAB0.so"/>
+		</Model>
+		<Model name="SDS_CAB0" version="v1.1">
+			<AliasFile  name="SDS_CAB0.alias" />
+			<IniFile    name="SDS_CAB0.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libSDS_CAB0.so"/>
+		</Model>
+		<Model name="FMS_CAB0" version="v1.1">
+			<AliasFile  name="FMS_CAB0.alias" />
+			<IniFile    name="FMS_CAB0.init" />
+			<IniFile    name="FMS_CAB0.prf" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libFMS_CAB0.so"/>
+		</Model>
+		<Model name="PCS_CAB0" version="v1.3">
+			<AliasFile  name="PCS_CAB0.alias" />
+			<IniFile    name="PCS_CAB0.init" /> 
+			<Scheduling value="40"/>
+			<Library    name ="libPCS_CAB0.so"/>
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="H41H42_VCS"> <!-- 4 vcs -->
+		<Environment name="GENDISCOCONFIG" value="${EXT_APP_PATH_UNIX}/MODELS/GENDISCO/v1.0/DSS_GenDiSCoConfig.cfg"/>
+		<Environment name="DSC_CONF_PATH" value="${EXT_APP_PATH_UNIX}/CPIOM/H41H42/v04.00.00/Software/cpiom_host/config"/>
+		<Environment name="DSC_MYINFOS_CONF_PATH" value="${EXT_APP_PATH_UNIX}/CPIOM/H41H42/v04.00.00/Software/cpiom_host/config"/>
+		<Model name="H41H42_VCS"> <!--For GenDiscoModel, no version needed -->
+			<Scheduling value="50"/>
+			<Library    name ="GenDiSCoModel"/> <!--For GenDiscoModel, dedicated name for library -->
+			<IniFile    name ="H41H42_VCS.init"/>
+			<AliasFile  name ="H41H42_VCS.alias" />
+		</Model>
+		<Model name="H41H42_VCS_FDEF" version="v04.00.00">
+			<Scheduling value="50"/>
+			<Library    name ="libFDEF_H41H42_VCS.so"/>
+			<IniFile    name ="H41H42_VCS_FDEF.init"/>
+			<AliasFile  name ="H41H42_VCS_FDEF.alias" />
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="FWS_CDS">
+		<Environment name="GENDISCOCONFIG" value="${EXT_APP_PATH_UNIX}/MODELS/GENDISCO/v1.0/DSS_GenDiSCoConfig.cfg"/>
+		<Environment name="DSC_CONF_PATH" value="${EXT_APP_PATH_UNIX}/EDP/V05-00-00/conf"/>
+		<Environment name="DSC_MYINFOS_CONF_PATH" value="${EXT_APP_PATH_UNIX}/EDP/V05-00-00/conf"/>
+		<Model name="FWS_CDS">
+			<AliasFile  name="FWS_CDS.alias" /> 
+			<IniFile    name="FWS_CDS.init"/>
+			<Scheduling value="40"/>
+			<Library    name="GenDiSCoModel"/>
+		</Model>
+		<Model name="FWS_CDS_FDEF" version="v05.00.00">
+			<AliasFile  name="FWS_CDS_FDEF.alias" /> 			
+			<IniFile    name="FWS_CDS_FDEF.init"/>
+			<Scheduling value="40"/>
+			<Library    name="libFDEF_EDP.so"/>
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="CMS">
+		<Environment name="GENDISCOCONFIG" value="${EXT_APP_PATH_UNIX}/MODELS/GENDISCO/v1.0/DSS_GenDiSCoConfig.cfg"/>
+		<Environment name="DSC_CONF_PATH" value="${EXT_APP_PATH_UNIX}/CMS/V02-01-00/conf"/>
+		<Environment name="DSC_MYINFOS_CONF_PATH" value="${EXT_APP_PATH_UNIX}/CMS/V02-01-00/conf"/>
+		<Model name="CMS">
+			<AliasFile  name="CMS.alias" /> 
+			<IniFile    name="CMS.init"/>
+			<Scheduling value="40"/>
+			<Library    name="GenDiSCoModel"/>
+		</Model>
+		<Model name="CMS_FDEF" version="v02.01.00">
+			<AliasFile  name="CMS_FDEF.alias" /> 
+			<IniFile    name="CMS_FDEF.init"/>
+			<Scheduling value="40"/>
+			<Library    name="libFDEF_CMS.so"/>
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="ICP">
+		<Environment name="GENDISCOCONFIG" value="${EXT_APP_PATH_UNIX}/MODELS/GENDISCO/v1.0/DSS_GenDiSCoConfig.cfg"/>
+		<Environment name="DSC_CONF_PATH" value="${EXT_APP_PATH_UNIX}/CPSP/V04-01-00/conf/"/>
+		<Environment name="DSC_MYINFOS_CONF_PATH" value="${EXT_APP_PATH_UNIX}/CPSP/V04-01-00/conf"/>
+		<Model name="ICP" > <!--For GenDiscoModel, no version needed -->
+			<Scheduling value="40"/>
+			<Library name ="GenDiSCoModel"/> <!--For GenDiscoModel, dedicated name for library -->
+			<IniFile name ="ICP.init"/>
+			<AliasFile name ="ICP.alias" />
+		</Model>
+		<Model name="ICP_FDEF" version="v04.01.00">
+			<Scheduling value="40"/>
+			<Library name ="libFDEF_CPSP.so"/>
+			<IniFile name ="ICP_FDEF.init"/>
+			<AliasFile name ="ICP_FDEF.alias" />
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="APU">
+		<Model name="APS" version="v3.2.1">
+			<AliasFile  name="APS.alias" /> 
+			<IniFile    name="APS.init"/>
+			<Scheduling value="10"/>
+			<Library    name="libAPS_MNP1.so"/>
+		</Model>
+	</LocalCtrl>
+	
+	<LocalCtrl name="SYNOPTIC_WP1">
+		<Model name="SYNOPTIC_WP1" version="v2.0">
+			<Scheduling value="40"/>
+			<Library    name ="SCH_V36_01.dll"/>
+			<IniFile    name ="SYNOPTICS_WP1.init"/>
+			<AliasFile  name ="SYNOPTICS_WP1.alias" />
+		</Model>
+	</LocalCtrl>	
+	<!-- End Local Controler definition -->
+	
+	<!-- Synoptic definition -->
+	<Synoptic name="SIDE_1" version="v5.0"/>
+	<Synoptic name="SIDE_2" version="v5.0"/>
+	<Synoptic name="TCS"        version="v4.0"/>
+	<Synoptic name="CPCS"       version="v1.1"/>
+	<Synoptic name="WP4_FAN"        version="v1.0"/>
+	<Synoptic name="GAS"        version="v1.2"/>
+	<Synoptic name="WP4_COCKPIT"    version="v1.0"/>
+	<Synoptic name="WP4_CIDS"       version="v1.0"/>
+	<!-- End Synoptic definition -->
+	
+	<!-- Cpiom definition -->
+	<!--<CPIOM name="H41H42_ACT" version="v04.00.00"/> Not launched in this version-->
+	<CPIOM name="H41H42_CPC" version="v03.01.00"/>
+	<CPIOM name="H41H42" version="v04.00.00"/>
+	<!-- End Cpiom definition -->
+	
+	<!-- Package Sesame definition -->
+	<SESAME name="CPSP" PackageVersion="CPSP_V04-01-00" ConfVersion="Conf_3CAB0"/>
+	<SESAME name="EDP"  PackageVersion="EDP_V05-00-00"/>
+	<!-- End Package Sesame definition -->
+	
+	<!-- Other applications definition -->
+	<Others>
+		<Other name="DOME">
+		</Other>
+		<Other name="CommunityMgr">
+		</Other>
+		<Other name="Maestro">
+		</Other>
+	</Others>
+	<!-- End Other applications definition -->
+	
+	<!-- Launcher definition -->
+	<Launchers>
+		<Batch>
+			<Launcher type="LC" launcherName="launchLocalCtrl" version="2.0"/>
+			<Launcher type="Synoptic" launcherName="launchSYNOPTICS" version="5.0"/>
+			<Launcher type="DOME" launcherName="launchDOME" version="5.0"/>
+			<Launcher type="CommunityMgr" launcherName="launchDSSCM" version="1.0"/>
+			<Launcher type="SESAME" launcherName="launchSESAME_PACKAGE" version="2.0"/>
+		</Batch>
+		<Shell>
+			<Launcher type="LC" launcherName="launchLocalCtrl" version="3.0"/>
+			<Launcher type="CPIOM" launcherName="launch_CPIOM" version="5.0"/>
+			<Launcher type="kill" launcherName="killAll" version="5.0"/>
+			<Launcher type="DOME" launcherName="launch_DOME" version="4.0"/>
+			<Launcher type="CommunityMgr" launcherName="launchDSS_CM" version="3.0"/>
+			<Launcher type="Maestro" launcherName="launch_MAESTRO" version="1.3"/>
+		</Shell>
+	</Launchers>
+	<!-- End Launcher definition -->
+	
+	<!-- Global environment defintion -->
+	<Environment>
+		<Variable name="COMMON_PATH" value="B:\COMMON" toBatch="YES"/>
+		<Variable name="COMMON_PATH_UNIX" value="/home/SIMU_VIBE/COMMON" toBatch="YES"/>
+		<Variable name="CNX_PATH" value="/home/SIMU_VIBE/CNX/${CNX_VERSION}"/>
+		<Variable name="CNX_PATH_WIN" value="B:\CNX\%CNX_VERSION%"/>
+		<Variable name="STARTJOB_EXE_WIN" value="%COMMON_PATH%\UtilWin\StartJob\StartJob.exe" toBatch="YES"/>
+		<Variable name="STARTJOB_EXE_UNIX" value="${COMMON_PATH}\\UtilWin\\StartJob\\StartJob.exe" toBatch="YES"/>
+		<Variable name="REXEC_EXE" value="${COMMON_PATH_UNIX}/UtilWin/Rexec/rexecLinux" toBatch="YES"/>
+		<Variable name="DSS_VERSION" value="MUSIC_8.2" toBatch="YES"/>
+		<Variable name="EXT_APP_PATH" value="B:\EXTERNAL_APPLICATIONS" toBatch="YES"/>
+		<Variable name="EXT_APP_PATH_UNIX" value="/home/SIMU_VIBE/EXTERNAL_APPLICATIONS" toBatch="YES"/>
+		<Variable name="DOME_PROJECT_PATH" value="B:\PROJECTS" toBatch="YES"/>
+		<Variable name="D2B_CONFFILE_PATH" value="%EXT_APP_PATH%\DSS\DSS_CFG\DSS6_V4" toBatch="YES"/>
+		<Variable name="D2B_CONFFILE_PATH_UNIX" value="${EXT_APP_PATH_UNIX}/DSS/DSS_CFG/DSS6_V4" toBatch="YES"/>
+		<Variable name="RUNTIME_PATH" value="B:\RUNTIME\%PLATFORM_NAME%" toBatch="YES"/>
+		<Variable name="RUNTIME_PATH_UNIX" value="/home/SIMU_VIBE/RUNTIME/${PLATFORM_NAME}" toBatch="YES"/>
+		<Variable name="PROCESSFLAG_PATH" value="%RUNTIME_PATH%\PROCESSFLAG" toBatch="YES"/>
+		<Variable name="PROCESSFLAG_PATH_UNIX" value="${RUNTIME_PATH_UNIX}/PROCESSFLAG" toBatch="YES"/>
+		<Variable name="DSS_LIB_OP_WIN" value="%EXT_APP_PATH%\DSS\LIB_OP\V1.0\libOP.dll" toBatch="YES"/>
+		<Variable name="DSS_LIB_OP_UNIX" value="${EXT_APP_PATH_UNIX}/DSS/LIB_OP/V1.0/libOP.so" toBatch="YES"/>
+		<Variable name="BATCH_PATH" value="%EXT_APP_PATH%\LAUNCHER_NEW\BATCH" toBatch="YES"/>
+		<Variable name="SHELL_PATH" value="${EXT_APP_PATH_UNIX}/LAUNCHER_NEW/SH" toBatch="YES"/>			
+	</Environment>
+	<!-- End Global environment defintion -->
+</Project>
+
+

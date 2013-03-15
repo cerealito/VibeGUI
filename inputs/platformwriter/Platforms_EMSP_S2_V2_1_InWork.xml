@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Project name="vibe">
+
+	 <Platform name="VADOR">    
+        <Environment>
+			<Variable name="PLATFORM_NAME"   value="VADOR"          />
+			<Variable name="DSS_CM_HOST_WIN" value="10.226.200.41"  />
+			<Variable name="DSS_CM_PORT"     value="5001"           />
+			<Variable name="PC_DSS"          value="10.226.200.41"  />
+			<Variable name="PC_CtrlStation"  value="10.226.200.196" />
+			<Variable name="PC_CPSP"         value="10.226.200.93"  />
+			<Variable name="PC_EDP"          value="10.226.200.93"  />
+        </Environment>
+		
+		<Computer name="LinuxHost" address="${PC_DSS}" sleep="1" type="Linux">
+			<Appli name="CommunityMgr"/>
+			<Appli name="DOME"/>
+			<Appli name="Maestro"/>
+		</Computer>
+		<Computer name="LinuxHost" address="${PC_DSS}" sleep="0" type="Linux">
+			<Appli name="WP1_MODELS_10" type="LC"  />
+			<Appli name="WP1_MODELS_40" type="LC"  />
+			<Appli name="WP2_MODELS"          type="LC"   />
+			<Appli name="WP2_H41_H42"   type="LC"   />
+			<Appli name="WP2_WP4_CEP"   type="LC"   /> 
+			<Appli name="WP3_MODELS"       type="LC"   />
+			<Appli name="H41H42_CPC" type="LC"   />
+			<Appli name="CRDC_B12"   type="LC"   />
+			<Appli name="EXT_MODELS"  type="LC"   />
+			<Appli name="H41H42_VCS"   type="LC"   />
+			<Appli name="FWS_CDS"   type="LC"   />
+			<Appli name="CMS"     type="LC"   />
+			<Appli name="ICP"      type="LC"   />
+			<Appli name="APU"          type="LC"   />
+			<Appli name="H41H42_ACT"   type="CPIOM"/>
+			<Appli name="H41H42_CPC"   type="CPIOM"/>
+			<Appli name="H41H42"   type="CPIOM"/>
+		</Computer>
+		<Computer name="CtrlStation" address="${PC_CtrlStation}" sleep="1" type="Windows">
+			<Appli name="SYNOPTIC_WP1"          type="LC"   />
+			<Appli name="SIDE_1" type="Synoptic"/>
+			<Appli name="SIDE_2" type="Synoptic"/>
+			<Appli name="TCS"        type="Synoptic"/>
+			<Appli name="GAS"        type="Synoptic"/>
+			<Appli name="CPCS"        type="Synoptic"/>
+			<Appli name="WP4_FAN"        type="Synoptic"/>
+			<Appli name="WP4_COCKPIT"    type="Synoptic"/>
+			<Appli name="WP4_CIDS"       type="Synoptic"/>
+		</Computer>
+		<Computer name="CPSP" address="${PC_CPSP}" sleep="1" type="Windows">
+			<Appli name="CPSP" type="SESAME"/>
+		</Computer>
+		<Computer name="EDP" address="${PC_EDP}" sleep="1" type="Windows">
+			<Appli name="EDP" type="SESAME"/>
+		</Computer>
+     </Platform>
+	 <Platform name="OLIVIER">    
+        <Environment>
+			<Variable name="PLATFORM_NAME"   value="OLIVIER"        />
+			<Variable name="DSS_CM_HOST_WIN" value="10.226.200.41"  />
+			<Variable name="DSS_CM_PORT"     value="5001"           />
+			<Variable name="PC_DSS"          value="10.226.200.41"  />
+			<!--<Variable name="PC_CtrlStation"  value="10.226.201.17" />-->
+			<Variable name="PC_CtrlStation"  value="10.226.202.235" />
+			<Variable name="PC_CPSP"         value="10.226.200.93"  />
+			<Variable name="PC_EDP"          value="10.226.200.93"  />
+        </Environment>
+		
+		<Computer name="LinuxHost" address="${PC_DSS}" sleep="1" type="Linux">
+			<Appli name="CommunityMgr"/>
+			<Appli name="DOME"/>
+			<Appli name="Maestro"/>
+		</Computer>
+		<Computer name="LinuxHost" address="${PC_DSS}" sleep="0" type="Linux">
+			<Appli name="WP1_MODELS_10" type="LC"  />
+			<Appli name="WP1_MODELS_40" type="LC"  />
+			<Appli name="WP2_MODELS"          type="LC"   />
+			<Appli name="WP2_H41_H42"   type="LC"   />
+			<Appli name="WP2_WP4_CEP"   type="LC"   /> 
+			<Appli name="WP3_MODELS"       type="LC"   />
+			<Appli name="H41H42_CPC" type="LC"   />
+			<Appli name="CRDC_B12"   type="LC"   />
+			<Appli name="EXT_MODELS"  type="LC"   />
+			<Appli name="H41H42_VCS"   type="LC"   />
+			<Appli name="FWS_CDS"   type="LC"   />
+			<Appli name="CMS"     type="LC"   />
+			<Appli name="ICP"      type="LC"   />
+			<Appli name="APU"          type="LC"   />
+			<Appli name="H41H42_ACT"   type="CPIOM"/>
+			<Appli name="H41H42_CPC"   type="CPIOM"/>
+			<Appli name="H41H42"   type="CPIOM"/>
+		</Computer>
+		<Computer name="CtrlStation" address="${PC_CtrlStation}" sleep="1" type="Windows">
+			<Appli name="SYNOPTIC_WP1"          type="LC"   />
+			<Appli name="SIDE_1" type="Synoptic"/>
+			<Appli name="SIDE_2" type="Synoptic"/>
+			<Appli name="TCS"        type="Synoptic"/>
+			<Appli name="GAS"        type="Synoptic"/>
+			<Appli name="CPCS"        type="Synoptic"/>
+			<Appli name="WP4_FAN"        type="Synoptic"/>
+			<Appli name="WP4_COCKPIT"    type="Synoptic"/>
+			<Appli name="WP4_CIDS"       type="Synoptic"/>
+		</Computer>
+		<Computer name="CPSP" address="${PC_CPSP}" sleep="1" type="Windows">
+			<Appli name="CPSP" type="SESAME"/>
+		</Computer>
+		<Computer name="EDP" address="${PC_EDP}" sleep="1" type="Windows">
+			<Appli name="EDP" type="SESAME"/>
+		</Computer>
+	</Platform>
+
+	<Platform name="ANAKIN">    
+        <Environment>
+			<Variable name="PLATFORM_NAME"   value="ANAKIN"        />
+			<Variable name="DSS_CM_HOST_WIN" value="10.226.200.41"  />
+			<Variable name="DSS_CM_PORT"     value="5001"           />
+			<Variable name="PC_DSS"          value="10.226.200.41"  />
+			<!--<Variable name="PC_CtrlStation"  value="10.226.201.17" />-->
+			<Variable name="PC_CtrlStation"  value="10.226.202.103" />
+			<Variable name="PC_CPSP"         value="10.226.200.93"  />
+			<Variable name="PC_EDP"          value="10.226.200.93"  />
+        </Environment>
+		
+		<Computer name="LinuxHost" address="${PC_DSS}" sleep="1" type="Linux">
+			<Appli name="CommunityMgr"/>
+			<Appli name="DOME"/>
+			<Appli name="Maestro"/>
+		</Computer>
+		<Computer name="LinuxHost" address="${PC_DSS}" sleep="0" type="Linux">
+			<Appli name="WP1_MODELS_10" type="LC"  />
+			<Appli name="WP1_MODELS_40" type="LC"  />
+			<Appli name="WP2_MODELS"          type="LC"   />
+			<Appli name="WP2_H41_H42"   type="LC"   />
+			<Appli name="EXT_MODELS"  type="LC"   />
+			<Appli name="H41H42_VCS"   type="LC"   />
+			<Appli name="H41H42_ACT"   type="CPIOM"/>
+			<Appli name="H41H42_CPC"   type="CPIOM"/>
+			<Appli name="H41H42"   type="CPIOM"/>
+		</Computer>
+		<Computer name="CtrlStation" address="${PC_CtrlStation}" sleep="1" type="Windows">
+			<Appli name="GAS"        type="Synoptic"/>
+			<Appli name="CPCS"        type="Synoptic"/>
+			<Appli name="WP4_CIDS"       type="Synoptic"/>
+		</Computer>
+	</Platform>
+		
+</Project>
