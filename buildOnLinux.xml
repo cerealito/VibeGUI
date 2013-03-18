@@ -3,12 +3,12 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="/home/SIMU_VIBE/UTIL/gui/gui_dev_git.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="/home/SIMU_VIBE/UTIL/gui/gui_dev.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="com.airbus.vibe.gui.Main"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
-            <fileset dir="/home/saflores/tmp/ws2/VibeGUI/bin"/>
+            <fileset dir="/home/saflores/workspace/VibeGUI/bin"/>
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.jface_3.8.101.v20120817-083647.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.swt.gtk.linux.x86_64_3.100.1.v4234e.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.equinox.common_3.6.100.v20120522-1841.jar"/>
