@@ -25,7 +25,9 @@ import org.xml.sax.SAXException;
 public class PlatformWriter {
 
 	private Document document;
-	private ArrayList<NodeWrapper> finalList;
+	private ArrayList<NodeWrapper>    finalList;
+	private ArrayList<RestorableNode> backupList;
+	
 	public  Tree     <NodeWrapper> tree;
 
 	/**
@@ -86,7 +88,13 @@ public class PlatformWriter {
 					
 					if (nw.isAppli()) {
 						this.finalList.add(nw);
+						
 						System.out.println(">>> adding " + nw);
+						// null pointer exception: why?
+						//this.backupList.add(new RestorableNode(nw.getXmlNode().getParentNode(),
+						//                                       nw.getXmlNode().cloneNode(true)));
+						
+						
 					}
 				}
 				catch (NullPointerException e) {
@@ -150,6 +158,9 @@ public class PlatformWriter {
 			System.err.println("something went very wrong at the transformation");
 			e.printStackTrace();
 		}
+		
+		this.restoreNodes();
+		
 	}
 	
 	public Document getDocument() {
@@ -169,7 +180,7 @@ public class PlatformWriter {
 		for (NodeWrapper nw: finalList) {
 			try {
 				if (! nw.isIncluded()) {
-					Node p = nw.getXmlNode().getParentNode();
+					Node p = nw.getXmlNode().getParentNode();					
 					p.removeChild(nw.getXmlNode());
 				}
 			}
@@ -179,6 +190,28 @@ public class PlatformWriter {
 			}
 			
 		}
+	}
+	
+	private void restoreNodes() {
+		for (RestorableNode rn : backupList) {
+			System.out.println(rn.toString());	
+		}
+	}
+	
+}
+
+class RestorableNode {
+	Node parent;
+	Node copy;
+	
+	RestorableNode(Node parent, Node copy) {
+		this.parent = parent;
+		this.copy   = copy;
+	}
+	
+	@Override
+	public String toString() {
+		return this.copy.getNodeValue();
 	}
 	
 }
