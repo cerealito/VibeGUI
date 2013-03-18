@@ -3,25 +3,20 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="/home/SIMU_VIBE/UTIL/gui/gui_dev.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="/home/SIMU_VIBE/UTIL/gui/gui_dev_git.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="com.airbus.vibe.gui.Main"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
-            <fileset dir="/home/saflores/workspace/tsarGUI/bin"/>
+            <fileset dir="/home/saflores/tmp/ws2/VibeGUI/bin"/>
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.jface_3.8.101.v20120817-083647.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.swt.gtk.linux.x86_64_3.100.1.v4234e.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.equinox.common_3.6.100.v20120522-1841.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.jface.text_3.8.1.v20120828-155502.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.osgi.util_3.2.300.v20120522-1822.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.jface.text_3.8.1.v20120828-155502.jar"/>            
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.osgi_3.8.1.v20120830-144521.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.core.commands_3.6.1.v20120814-150512.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.equinox.registry_3.5.200.v20120522-1841.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.core.runtime_3.8.0.v20120521-2346.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.text_3.5.200.v20120523-1310.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.ui.workbench_3.103.1.v20120906-120042.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.ui.forms_3.5.200.v20120705-114351.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/com.ibm.icu_4.4.2.v20110823.jar"/>
+        	<zipfileset excludes="META-INF/*.SF" src="/home/saflores/prog/eclipse/plugins/org.eclipse.core.runtime_3.8.0.v20120521-2346.jar"/>
         </jar>
     </target>
 </project>
