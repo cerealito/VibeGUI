@@ -25,7 +25,7 @@ import org.xml.sax.SAXException;
 public class PlatformWriter {
 
 	private Document document;
-	private ArrayList<NodeWrapper>    finalList;
+	private ArrayList<NodeWrapper>    appliList;
 	private ArrayList<RestorableNode> backupList;
 	
 	public  Tree     <NodeWrapper> tree;
@@ -38,7 +38,8 @@ public class PlatformWriter {
 	public PlatformWriter(String path_s, String platform2trim) {
 		
 		DOMParser parser = new DOMParser();
-		this.finalList = new ArrayList<NodeWrapper>();
+		this.appliList = new ArrayList<NodeWrapper>();
+		this.backupList = new ArrayList<RestorableNode>();
 		
 		try {
 			parser.parse(path_s);
@@ -87,14 +88,8 @@ public class PlatformWriter {
 					t.addLeaf(nw);
 					
 					if (nw.isAppli()) {
-						this.finalList.add(nw);
-						
-						System.out.println(">>> adding " + nw);
-						// null pointer exception: why?
-						//this.backupList.add(new RestorableNode(nw.getXmlNode().getParentNode(),
-						//                                       nw.getXmlNode().cloneNode(true)));
-						
-						
+						this.appliList.add(nw);				
+						System.out.println(">>> added " + nw);
 					}
 				}
 				catch (NullPointerException e) {
@@ -138,11 +133,16 @@ public class PlatformWriter {
 		return ret_node;
 	}
 
-	
+	/**
+	 * Writes the associated Platform File to disk, trimming beforehand
+	 * @param output_f
+	 */
 	public void write(File output_f) {
 		
+		System.out.println("trimming");
 		this.trim();
 		
+		System.out.print("writing...");
 		DOMSource source = new DOMSource(this.document);
 		StreamResult result = new StreamResult(output_f);
 		
@@ -159,29 +159,49 @@ public class PlatformWriter {
 			e.printStackTrace();
 		}
 		
+		System.out.println(" ok");
+		
 		this.restoreNodes();
 		
 	}
 	
+	/**
+	 * Accessor to the DOM document
+	 * @return
+	 */
 	public Document getDocument() {
 		return document;
 	}
 	
+	/**
+	 * accessor to the final list
+	 * @return
+	 */
 	public ArrayList<NodeWrapper> getFinalList() {
-		return finalList;
+		return appliList;
 	}
 	
 	/**
-	 * Removes nodes from the document that are not included
-	 * in the nodeWrappers list
+	 * Removes nodes from the document excluded nodes form the DOM Document.
+	 * This method iterates on the list of applications and removes 
+	 * all the DOM nodes from the document that are not marked as included.
+	 * It does so by keeping a backup copy of the removed nodes.
+	 * 
 	 */
 	private void trim() {
-		
-		for (NodeWrapper nw: finalList) {
+	
+		for (NodeWrapper nw : appliList) {
 			try {
 				if (! nw.isIncluded()) {
-					Node p = nw.getXmlNode().getParentNode();					
-					p.removeChild(nw.getXmlNode());
+					
+					Node p = nw.getXmlNode().getParentNode();
+					
+					// remove the node from the Document and keep a backup copy in a separate list
+					RestorableNode backup = new RestorableNode(p,
+					                                           p.removeChild(nw.getXmlNode() )
+					                                           ); 
+					this.backupList.add(backup);
+														
 				}
 			}
 			catch (NullPointerException e) {
@@ -192,26 +212,49 @@ public class PlatformWriter {
 		}
 	}
 	
+	/**
+	 * restores any trimmed nodes
+	 */
 	private void restoreNodes() {
+		System.out.println("restoring " + this.backupList.size() + " elements");
+		
 		for (RestorableNode rn : backupList) {
-			System.out.println(rn.toString());	
+			try {
+				rn.parent.appendChild(rn.removed);				
+			}
+			catch( Exception e) {
+				System.out.println("Error: " + e);
+			}
 		}
+		
+		//after restoring nodes, empty the restore list
+		this.backupList.clear();	
 	}
 	
 }
 
+/**
+ * Helper class to be able to restore the nodes. 
+ * @author saflores
+ *
+ */
 class RestorableNode {
 	Node parent;
-	Node copy;
+	Node removed;
 	
-	RestorableNode(Node parent, Node copy) {
-		this.parent = parent;
-		this.copy   = copy;
+	RestorableNode(Node parent, Node removed) {
+		
+		if (null == parent || null == removed) {	
+			throw new Error("Restorable node must have non-null attributes");
+		}
+		
+		this.parent  = parent;
+		this.removed = removed;
 	}
 	
 	@Override
 	public String toString() {
-		return this.copy.getNodeValue();
+		return this.removed.getNodeName() + " son of " + this.parent.getNodeName() ;
 	}
 	
 }

@@ -10,24 +10,24 @@
 			
         </Environment>         
         <Computer address="${DSS_CM_HOST_WIN}" name="LinuxHost" sleep="2" type="Linux">
-			
+			<Appli name="CommunityMgr"/>
 			<Appli name="DOME"/>
         </Computer>
 		<Computer address="${PC_DSS}" name="LinuxHost" sleep="0" type="Linux">
 			<Appli name="WP1_MODELS_10" type="LC"/>
-			
+			<Appli name="WP1_MODELS_40" type="LC"/>
 			<!--<Appli name="H41H42_ACT" type="CPIOM"/>-->
-			<Appli name="H41H42_CPC" type="CPIOM"/>
+			
 			<!--<Appli name="H41H42_VCS" type="CPIOM"/>-->
 			<!--<Appli name="WP2" type="LC"/>-->	
         </Computer>
 		<Computer address="${PC_CtrlStation}" name="ControlStation" sleep="0" type="Windows">
 		<!--<Computer address="${PC_CtrlStation}" sleep="0" type="Windows">-->
-			<Appli name="PACK_SIDE1" type="Synoptic"/>
+			
 		</Computer>
 		<Computer address="${PC_CPSP}" name="PC_CPSP" sleep="0" type="Windows">
 			
-		</Computer>
+		<Appli name="CPSP" type="SESAME"/></Computer>
      </Platform>
 	 <Platform name="ANAKIN">    
         <Environment>
