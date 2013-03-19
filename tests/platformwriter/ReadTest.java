@@ -45,10 +45,10 @@ public class ReadTest {
 
 		//System.out.println(pw.c_tree);
 
-		System.out.println(" --- disabling some of the " + pw.getFinalList().size() + " elements---");
+		System.out.println(" --- disabling the last 3 (of " + pw.getFinalList().size() + ") elements---");
 		
-		pw.getFinalList().get(0).setIncluded(false);
-		pw.getFinalList().get(3).setIncluded(false);
+		pw.getFinalList().get( pw.getFinalList().size()-3).setIncluded(false);
+		pw.getFinalList().get( pw.getFinalList().size()-2).setIncluded(false);
 		pw.getFinalList().get( pw.getFinalList().size()-1 ).setIncluded(false);
 		
 		System.out.println("writing first tree:");
