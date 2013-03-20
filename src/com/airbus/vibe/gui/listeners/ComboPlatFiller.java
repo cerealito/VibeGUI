@@ -69,6 +69,7 @@ public class ComboPlatFiller implements Listener {
 			
 		String hostname = System.getenv().get("HOSTNAME"); 
 		boolean found = false;
+		boolean changeAllowed = false;
 		
 		if (hostname != null) {
 
@@ -113,17 +114,30 @@ public class ComboPlatFiller implements Listener {
 				}
 			}
 
+			else if (hostname.equalsIgnoreCase("coleoptere")) {
+				for (String i : comboPlatform.getItems()) {
+					idxPlat++;
+					if(i.equalsIgnoreCase("vador")) {
+						System.out.println("suggesting platform vador");
+						changeAllowed = true;
+						break;
+					}
+				}
+			}
 
-			// idxPlat only non-negative if found the appropriate platform
+			// idxPlat will be non-negative ONLY IF found the appropriate platform
 			if (idxPlat >= 0) {
 				comboPlatform.select(idxPlat);
 				comboPlatform.notifyListeners(SWT.Selection, new Event());
 
-				comboPlatform.setEnabled(false);
+				if ( ! changeAllowed ) {
+					comboPlatform.setEnabled(false);
+				}
+				
 				found = true;
 			}
 		}
-		return found;
 		
+		return found;
 	}
 }
