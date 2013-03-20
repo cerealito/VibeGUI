@@ -9,13 +9,11 @@ import com.airbus.vibe.gui.TsarGUI;
 
 public class OnlineDetector implements PaintListener {
 	Button btnLaunch;
-	Button btnKill;
 	Label  lblStatus;
 	TsarGUI g;
 	
 	public OnlineDetector(TsarGUI g) {
 		btnLaunch = g.getBtnLaunch();
-		btnKill = g.getBtnKill();
 		lblStatus = g.getLblStatus();
 
 		this.g = g;
@@ -24,9 +22,6 @@ public class OnlineDetector implements PaintListener {
 	public void paintControl(PaintEvent e) {
 		if(lblStatus.getText().endsWith("online")) {
 			// #### when going online:
-			
-			// enable kill (universal)
-			btnKill.setEnabled(true);
 			
 			// set the gui state to online so that the other listeners can know
 			// for now, at least EnableLaunchButton listener must read this
@@ -60,10 +55,7 @@ public class OnlineDetector implements PaintListener {
 			// #### when going offline:
 			//notify the rest of the simulation we're offline
 			g.setOnline(false);
-			
-			// disable the kill button, for there's nothing to kill
-			btnKill.setEnabled(false);
-			
+						
 			// Re-enable combos and Launch button:
 			g.getComboApp().setEnabled(true);
 			g.getComboPlatform().setEnabled(true);

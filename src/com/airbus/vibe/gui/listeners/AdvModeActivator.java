@@ -26,6 +26,7 @@ public class AdvModeActivator implements Listener {
 		this.viewer = this.gui.getAdvTreeViewer();
 	}
 	
+	
 	public void handleEvent(Event event) {
 		
 		if(gui.getBtnAdvancedMode().getSelection()) {
@@ -58,7 +59,7 @@ public class AdvModeActivator implements Listener {
 			}
 			
 			viewer.expandAll();
-			viewer.setAllChecked(true);
+			// start with every item UNCHECKED
 		}
 		else {
 			// #### #### Adv Mode Checkbox has been unchecked
