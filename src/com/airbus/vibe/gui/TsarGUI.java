@@ -1,7 +1,5 @@
 package com.airbus.vibe.gui;
 
-import java.io.File;
-
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.swt.SWT;
@@ -52,9 +50,6 @@ public class TsarGUI {
 	
 	//#########################################################################
 	// General variables
-	// TODO: externalize these!!!!
-	//public final File app_dir  = new File(Constants.app_dir);
-	// public final File plat_dir = new File(Constants.plat_dir);
 	
 	private boolean online;
 	private Display display;
@@ -415,7 +410,8 @@ public class TsarGUI {
 		gd_btnKill.widthHint = 118;
 		btnKill.setLayoutData(gd_btnKill);
 
-		btnKill.setEnabled(false);
+		//we can invoke kill at any time, including from the very start
+		btnKill.setEnabled(true);
 		btnKill.setImage(SWTResourceManager.getImage(TsarGUI.class,
 				"/com/airbus/vibe/gui/icons/process-stop.png"));
 		btnKill.setText("Kill Simulation");

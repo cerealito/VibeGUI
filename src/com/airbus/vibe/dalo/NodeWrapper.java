@@ -9,7 +9,7 @@ public class NodeWrapper{
 	
 	public NodeWrapper(Node domNode) {
 		this.domNode = domNode;
-		this.included = true;
+		this.included = false;
 	}
 	
 	public boolean isIncluded() {

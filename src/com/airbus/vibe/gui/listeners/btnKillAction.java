@@ -11,8 +11,6 @@ public class btnKillAction implements Listener {
 
 	TsarGUI gui;
 	
-	
-	
 	/**
 	 * @param gui
 	 */
