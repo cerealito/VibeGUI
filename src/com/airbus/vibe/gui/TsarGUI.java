@@ -2,6 +2,7 @@ package com.airbus.vibe.gui;
 
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Point;
@@ -20,6 +21,7 @@ import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
@@ -86,10 +88,13 @@ public class TsarGUI {
 		// Variables of the advanced subTab			
 		private TabItem tabAdvanced;
 
-			private Composite advancedComposite;
+			private AdvComposite advancedComposite;
 			
 			private CheckboxTreeViewer  advTreeViewer;
-	
+			private TableViewer advPropTableViewer;
+			private Table advPropTable;
+
+			
 			private Label  advLblSelectComponents;
 			
 			
@@ -222,19 +227,23 @@ public class TsarGUI {
 	}
 	
 	public CheckboxTreeViewer  getAdvTreeViewer() {
-		return advTreeViewer;
+		//return advTreeViewer;
+		return advancedComposite.getAdvTreeViewer();
 	}
 	
 	public Label getAdvLblInfo1() {
-		return advLblInfo1;
+		//return advLblInfo1;
+		return advancedComposite.getAdvLblInfo1();
 	}
 
 	public Label getAdvLblSelectComponents() {
-		return advLblSelectComponents;
+		//return advLblSelectComponents;
+		return advancedComposite.getAdvLblSelectComponents();
 	}
 
 	public Label getAdvLblCurrentPlatform() {
-		return advLblCurrentFile;
+		//return advLblCurrentFile;
+		return advancedComposite.getAdvLblCurrentFile();
 	}
 
 	//##########################################################################
@@ -471,44 +480,43 @@ public class TsarGUI {
 		tabAdvanced = new TabItem(simuFolder, SWT.NONE);
 		tabAdvanced.setText("Advanced");
 			
-		advancedComposite = new Composite(simuFolder, SWT.NONE);
+		advancedComposite = new AdvComposite(simuFolder, SWT.NONE);
 		tabAdvanced.setControl(advancedComposite);
 		
-		advancedComposite.setLayout(new GridLayout(1, false));
+//		advancedComposite.setLayout(new GridLayout(2, false));
+//		
+//		advLblInfo1 = new Label(advancedComposite, SWT.NONE);
+//		advLblInfo1.setEnabled(false);
+//		advLblInfo1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
+//		advLblInfo1.setText("Select an application description...");
+//		new Label(advancedComposite, SWT.NONE);
+//		
+//		advLblCurrentFile = new Label(advancedComposite, SWT.NONE);
+//		advLblCurrentFile.setEnabled(false);
+//		advLblCurrentFile.setForeground(SWTResourceManager.getColor(0, 51, 255));
+//		
+//		advLblCurrentFile.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+//		new Label(advancedComposite, SWT.NONE);
+//
+//		
+//		
+//		advLblSelectComponents = new Label(advancedComposite, SWT.NONE);
+//		advLblSelectComponents.setText("Select components  to launch:");
+//		new Label(advancedComposite, SWT.NONE);
+//
+//		// ######### the fucking TREE
+//		advTreeViewer = new CheckboxTreeViewer(advancedComposite);
+//		Tree tree = advTreeViewer.getTree();
+//		tree.setEnabled(false);
+//		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
+//				
+//		advTreeViewer.setContentProvider(new SWTTreeProvider());
+//		advTreeViewer.setLabelProvider(new SWTLabelProvider());
+//					
+//		advPropTableViewer = new TableViewer(advancedComposite, SWT.BORDER | SWT.FULL_SELECTION);
+//		advPropTable = advPropTableViewer.getTable();
+//		advPropTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		
-		advLblInfo1 = new Label(advancedComposite, SWT.NONE);
-		advLblInfo1.setEnabled(false);
-		advLblInfo1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
-		advLblInfo1.setText("Select an application description...");
-		
-		
-		advLblCurrentFile = new Label(advancedComposite, SWT.NONE);
-		advLblCurrentFile.setEnabled(false);
-		advLblCurrentFile.setForeground(SWTResourceManager.getColor(0, 51, 255));
-		
-		advLblCurrentFile.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-		
-
-		
-		
-		advLblSelectComponents = new Label(advancedComposite, SWT.NONE);
-		advLblSelectComponents.setText("Select components  to launch:");
-		
-
-		// ######### the fucking TREE
-		advTreeViewer = new CheckboxTreeViewer(advancedComposite);
-		Tree tree = advTreeViewer.getTree();
-		tree.setEnabled(false);
-		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
-		new Label(advancedComposite, SWT.NONE);
-		
-		advTreeViewer.setContentProvider(new SWTTreeProvider());
-		advTreeViewer.setLabelProvider(new SWTLabelProvider());
-					
-		
-	
-		
-
 		//######################################################################
 		//######################################################################
 		//####                    SECOND Tab: scenario                      ####
@@ -700,7 +708,7 @@ public class TsarGUI {
 		comboApp.addListener(SWT.Selection, new AdvLblCurrentFileSetter(this));
 		comboApp.addListener(SWT.Selection, new ComboPlatFiller(this));
 		
-		advTreeViewer.addCheckStateListener(new AdvTreeViewerChecker(this));
+		advancedComposite.getAdvTreeViewer().addCheckStateListener(new AdvTreeViewerChecker(this));
 		
 		// this guy is here twice
 		AdvModeActivator myActivator = new AdvModeActivator(this);
