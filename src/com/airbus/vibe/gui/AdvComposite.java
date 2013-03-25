@@ -6,7 +6,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import com.airbus.vibe.dalo.SWTLabelProvider;
@@ -97,11 +99,23 @@ public class AdvComposite extends Composite {
 		advTreeViewer.setContentProvider(new SWTTreeProvider());
 		advTreeViewer.setLabelProvider(new SWTLabelProvider());
 
+		// ######### the new table :D
 		advPropTableViewer = new TableViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
 		advPropTable = advPropTableViewer.getTable();
 		advPropTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		advPropTable.setHeaderVisible(true);
+		advPropTable.setLinesVisible(true);
 
-
+		advPropTableViewer.setContentProvider(ArrayContentProvider.getInstance());
+		
+		TableViewerColumn advPropColAttrib = new TableViewerColumn(advPropTableViewer, SWT.NONE);
+		advPropColAttrib.getColumn().setWidth(100);
+		advPropColAttrib.getColumn().setText("Attribute");
+		
+		TableViewerColumn advPropColValue = new TableViewerColumn(advPropTableViewer, SWT.NONE);
+		advPropColValue.getColumn().setWidth(100);
+		advPropColValue.getColumn().setText("Value");
+		
 	}
 
 	@Override
