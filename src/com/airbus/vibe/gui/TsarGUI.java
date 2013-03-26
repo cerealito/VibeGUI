@@ -2,6 +2,8 @@ package com.airbus.vibe.gui;
 
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -27,6 +29,7 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import com.airbus.vibe.dalo.NodeWrapper;
 import com.airbus.vibe.dalo.SWTLabelProvider;
 import com.airbus.vibe.dalo.SWTTreeProvider;
 import com.airbus.vibe.gui.listeners.AdvLblCurrentFileSetter;
@@ -709,6 +712,22 @@ public class TsarGUI {
 		comboApp.addListener(SWT.Selection, new ComboPlatFiller(this));
 		
 		advancedComposite.getAdvTreeViewer().addCheckStateListener(new AdvTreeViewerChecker(this));
+		advancedComposite.getAdvTreeViewer().addSelectionChangedListener(new ISelectionChangedListener(){
+
+			public void selectionChanged(SelectionChangedEvent e) {
+				System.out.println("   >>> selected " + e.getSelection());
+				
+				String[] sel = {e.getSelection().toString(),
+						        e.getSelection().toString(),
+						        e.getSelection().toString(),
+						        e.getSelection().toString(),
+						        e.getSelection().toString(),
+						        e.getSelection().toString()};
+				
+				advancedComposite.getAdvPropTableViewer().setInput(sel);
+			}
+			
+		});
 		
 		// this guy is here twice
 		AdvModeActivator myActivator = new AdvModeActivator(this);

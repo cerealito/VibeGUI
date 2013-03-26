@@ -2,6 +2,7 @@ package com.airbus.vibe.gui;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
@@ -21,6 +22,8 @@ public class AdvComposite extends Composite {
 
 	private CheckboxTreeViewer  advTreeViewer;
 
+	private SashForm advSash;
+	
 	private Label  advLblSelectComponents;
 	private Table  advPropTable;
 
@@ -29,13 +32,9 @@ public class AdvComposite extends Composite {
 	private Label  advLblInfo1;
 	private Label  advLblCurrentFile;
 	
-	// getters and setters
+	// getters 
 	public Table getAdvPropTable() {
 		return advPropTable;
-	}
-
-	public void setAdvPropTable(Table advPropTable) {
-		this.advPropTable = advPropTable;
 	}
 
 	public TableViewer getAdvPropTableViewer() {
@@ -66,55 +65,65 @@ public class AdvComposite extends Composite {
 	public AdvComposite(Composite parent, int style) {
 		super(parent, style);
 
-		this.setLayout(new GridLayout(2, false));
+		this.setLayout(new GridLayout(1, true));
 		
 		advLblInfo1 = new Label(this, SWT.NONE);
 		advLblInfo1.setEnabled(false);
-		advLblInfo1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
+		advLblInfo1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		advLblInfo1.setText("Select an application description...");
-		new Label(this, SWT.NONE);
 		
 		advLblCurrentFile = new Label(this, SWT.NONE);
 		advLblCurrentFile.setEnabled(false);
 		advLblCurrentFile.setForeground(SWTResourceManager.getColor(0, 51, 255));
 		
 		advLblCurrentFile.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		new Label(this, SWT.NONE);
-		
-
-		
 		
 		advLblSelectComponents = new Label(this, SWT.NONE);
+		advLblSelectComponents.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		advLblSelectComponents.setText("Select components  to launch:");
-		new Label(this, SWT.NONE);
+		
 
-
-
+		advSash = new SashForm(this,SWT.NONE);
+		advSash.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
+		
 		// ######### the fucking TREE
-		advTreeViewer = new CheckboxTreeViewer(this);
+		advTreeViewer = new CheckboxTreeViewer(advSash);
 		Tree tree = advTreeViewer.getTree();
 		tree.setEnabled(false);
-		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
+		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
 		advTreeViewer.setContentProvider(new SWTTreeProvider());
 		advTreeViewer.setLabelProvider(new SWTLabelProvider());
 
 		// ######### the new table :D
-		advPropTableViewer = new TableViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
+		advPropTableViewer = new TableViewer(advSash, SWT.BORDER | SWT.FULL_SELECTION);
 		advPropTable = advPropTableViewer.getTable();
-		advPropTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		GridData gd_advPropTable = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
+		gd_advPropTable.widthHint = 100;
+		advPropTable.setLayoutData(gd_advPropTable);
 		advPropTable.setHeaderVisible(true);
 		advPropTable.setLinesVisible(true);
 
 		advPropTableViewer.setContentProvider(ArrayContentProvider.getInstance());
-		
+
+		// #### first column with attribute label
 		TableViewerColumn advPropColAttrib = new TableViewerColumn(advPropTableViewer, SWT.NONE);
 		advPropColAttrib.getColumn().setWidth(100);
 		advPropColAttrib.getColumn().setText("Attribute");
-		
+
+		advPropColAttrib.setLabelProvider(new AttributeColumnProvider());
+
+		// #### second column with the actual value of each attribute
 		TableViewerColumn advPropColValue = new TableViewerColumn(advPropTableViewer, SWT.NONE);
 		advPropColValue.getColumn().setWidth(100);
 		advPropColValue.getColumn().setText("Value");
+
+		advPropColValue.setLabelProvider(new ValueColumnProvider());
+
+		// TESTING
+		String[] toto = {"one", "two", "three", "four"};
+		advPropTableViewer.setInput(toto);
+		
 		
 	}
 
