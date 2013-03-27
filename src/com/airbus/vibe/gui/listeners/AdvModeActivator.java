@@ -6,6 +6,7 @@ import org.eclipse.swt.widgets.Event;
 
 import org.eclipse.swt.widgets.Listener;
 
+import com.airbus.vibe.dalo.ActorsFileReader;
 import com.airbus.vibe.dalo.PlatformWriter;
 import com.airbus.vibe.gui.TsarGUI;
 
@@ -39,11 +40,19 @@ public class AdvModeActivator implements Listener {
 			gui.getSimuFolder().setSelection(gui.getTabAdvanced());
 			gui.getTabAdvanced().setText("Advanced");
 			
-			//get the selected app and plat
+			//get the selected platform
 			String p_file = gui.getAdvLblCurrentPlatform().getText();
 			String p_name = gui.getComboPlatform().getText();
 			
+			//this was set before hand
+			String a_name = gui.getAdvancedComposite().getAdvStrCurrentActorsFile();
+			
+			//create the PlatformWriter
 			PlatformWriter pw = new PlatformWriter(p_file, p_name);
+			
+			//create the actors file reader
+			ActorsFileReader afr = new ActorsFileReader(a_name);
+			gui.getAdvancedComposite().setActorsReader(afr);
 			
 			System.out.println(pw.tree);
 			

@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import com.airbus.vibe.dalo.ActorsFileReader;
 import com.airbus.vibe.dalo.SWTLabelProvider;
 import com.airbus.vibe.dalo.SWTTreeProvider;
 
@@ -31,6 +32,10 @@ public class AdvComposite extends Composite {
 	
 	private Label  advLblInfo1;
 	private Label  advLblCurrentFile;
+	private String advStrCurrentActorsFile;
+	
+	
+	private ActorsFileReader actorsReader;
 	
 	// getters 
 	public Table getAdvPropTable() {
@@ -57,6 +62,22 @@ public class AdvComposite extends Composite {
 		return advTreeViewer;
 	}
 	
+	public String getAdvStrCurrentActorsFile() {
+		return advStrCurrentActorsFile;
+	}
+	
+	public void setAdvStrCurrentActorsFile(String s) {
+		this.advStrCurrentActorsFile = s;
+	}
+	
+	public ActorsFileReader getActorsReader() {
+		return actorsReader;
+	}
+
+	public void setActorsReader(ActorsFileReader actorsReader) {
+		this.actorsReader = actorsReader;
+	}
+
 	/**
 	 * Create the composite.
 	 * @param parent
@@ -120,6 +141,8 @@ public class AdvComposite extends Composite {
 
 		advPropColValue.setLabelProvider(new ValueColumnProvider());
 
+		
+		
 		// TESTING
 		String[] toto = {"one", "two", "three", "four"};
 		advPropTableViewer.setInput(toto);

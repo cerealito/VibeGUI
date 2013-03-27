@@ -10,14 +10,14 @@ import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 
-public class ApplicationReader {
+public class ActorsFileReader {
 
 	private Document document;
 	private NodeList lcs_nodes;
 	private NodeList syn_nodes;
 	
-	public ApplicationReader(String path_s) {
-		
+	public ActorsFileReader(String path_s) {
+		System.out.println("!!!! §§§§ Creating a new ActorsFileReader");
 		DOMParser parser = new DOMParser();
 		
 		try {
@@ -45,8 +45,28 @@ public class ApplicationReader {
 	 * @return
 	 */
 	public ActorWrapper[] getActors(String actor) {
-		// TODO
-		return null;
+		
+		ArrayList<ActorWrapper> actorList = new ArrayList<ActorWrapper>();
+		
+		for (int i=0; i < this.syn_nodes.getLength(); i++) {
+			try {
+				
+				String n = syn_nodes.item(i).getAttributes().
+						getNamedItem("name").getNodeValue();
+				
+				String v = syn_nodes.item(i).getAttributes().
+						getNamedItem("version").getNodeValue();
+				ActorWrapper aw = new ActorWrapper(n, v);
+				actorList.add(aw);
+			}
+			catch (NullPointerException e) {
+				//probably no attribute "name" or "version"
+				// do nothing
+			}
+			
+		}
+		
+		return (ActorWrapper[])actorList.toArray();
 	}
 
 	
