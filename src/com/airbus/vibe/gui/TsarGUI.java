@@ -34,6 +34,7 @@ import com.airbus.vibe.dalo.SWTLabelProvider;
 import com.airbus.vibe.dalo.SWTTreeProvider;
 import com.airbus.vibe.gui.listeners.AdvLblCurrentFileSetter;
 import com.airbus.vibe.gui.listeners.AdvModeActivator;
+import com.airbus.vibe.gui.listeners.AdvSelectionDetailShower;
 import com.airbus.vibe.gui.listeners.AdvTreeViewerChecker;
 import com.airbus.vibe.gui.listeners.ComboAppFiller;
 import com.airbus.vibe.gui.listeners.ComboPlatFiller;
@@ -92,19 +93,6 @@ public class TsarGUI {
 		private TabItem tabAdvanced;
 
 			private AdvComposite advancedComposite;
-			
-			private CheckboxTreeViewer  advTreeViewer;
-			private TableViewer advPropTableViewer;
-			private Table advPropTable;
-
-			
-			private Label  advLblSelectComponents;
-			
-			
-			private Label  advLblInfo1;
-	
-	
-			private Label  advLblCurrentFile;
 	
 	//#########################################################################
 	// Variables of the Scenario Tab
@@ -229,6 +217,10 @@ public class TsarGUI {
 		return comboPlatform;
 	}
 	
+	public AdvComposite getAdvancedComposite() {
+		return advancedComposite;
+	}
+
 	public CheckboxTreeViewer  getAdvTreeViewer() {
 		//return advTreeViewer;
 		return advancedComposite.getAdvTreeViewer();
@@ -248,6 +240,20 @@ public class TsarGUI {
 		//return advLblCurrentFile;
 		return advancedComposite.getAdvLblCurrentFile();
 	}
+	
+	public String getAdvStrCurrentActorsFile() {
+		//return advLblCurrentFile;
+		return advancedComposite.getAdvStrCurrentActorsFile();
+	}
+	
+	public Table getAdvPropTable() {
+		return advancedComposite.getAdvPropTable();
+	}
+
+	public TableViewer getAdvPropTableViewer() {
+		return advancedComposite.getAdvPropTableViewer();
+	}
+
 
 	//##########################################################################
 	/**
@@ -712,23 +718,10 @@ public class TsarGUI {
 		comboApp.addListener(SWT.Selection, new ComboPlatFiller(this));
 		
 		advancedComposite.getAdvTreeViewer().addCheckStateListener(new AdvTreeViewerChecker(this));
-		advancedComposite.getAdvTreeViewer().addSelectionChangedListener(new ISelectionChangedListener(){
+	
+		advancedComposite.getAdvTreeViewer().
+		    addSelectionChangedListener(new AdvSelectionDetailShower(this));
 
-			public void selectionChanged(SelectionChangedEvent e) {
-				System.out.println("   >>> selected " + e.getSelection());
-				
-				String[] sel = {e.getSelection().toString(),
-						        e.getSelection().toString(),
-						        e.getSelection().toString(),
-						        e.getSelection().toString(),
-						        e.getSelection().toString(),
-						        e.getSelection().toString()};
-				
-				advancedComposite.getAdvPropTableViewer().setInput(sel);
-			}
-			
-		});
-		
 		// this guy is here twice
 		AdvModeActivator myActivator = new AdvModeActivator(this);
 		comboPlatform.addListener(SWT.Selection, myActivator);

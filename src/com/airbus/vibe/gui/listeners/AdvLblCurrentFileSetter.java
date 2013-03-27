@@ -20,6 +20,9 @@ public class AdvLblCurrentFileSetter implements Listener {
 		this.all_app_dir   = new File(Constants.app_dir);
 	}
 	
+	/**
+	 * This method is triggered every time we change platforms
+	 */
 	public void handleEvent(Event event) {
 		
 		String selected_app = comboApp.getText();
@@ -28,10 +31,16 @@ public class AdvLblCurrentFileSetter implements Listener {
                       selected_app + "/" +
                       "Platforms_" + selected_app + ".xml");
 
-		if (p_f.canRead()) {
+		File a_f = new File(all_app_dir.getAbsolutePath() + "/" +
+                      selected_app + "/" +
+                      "Applications_" + selected_app + ".xml");
+		if (p_f.canRead() && a_f.canRead()) {
 			gui.getAdvLblCurrentPlatform().setText(p_f.getAbsolutePath());
-		}		
+			gui.getAdvancedComposite().setAdvStrCurrentActorsFile(a_f.getAbsolutePath());
+		}
+		
 
+		
 	}
 
 }
