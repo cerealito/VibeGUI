@@ -14,8 +14,11 @@ import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 public class ActorsFileReader {
 
 	private Document document;
+	
 	private NodeList lcs_nodes;
 	private NodeList syn_nodes;
+	private NodeList pkg_nodes;
+	private NodeList cpm_nodes;
 	
 	public ActorsFileReader(String path_s) {
 		System.out.println("Creating new ActorsFileReader at " + this.hashCode());
@@ -36,8 +39,34 @@ public class ActorsFileReader {
 		
 		this.lcs_nodes = document.getElementsByTagName("LocalCtrl");
 		this.syn_nodes = document.getElementsByTagName("Synoptic");
-		
+		this.cpm_nodes = document.getElementsByTagName("CPIOM");
+		this.pkg_nodes = document.getElementsByTagName("SESAME");
 	}
+	
+	/**
+	 * Returns all the actors (either a list of models or a single synoptic)
+	 * existing inside a given actor.
+	 * @param actor_nw
+	 * @return
+	 */
+	public SimItemWrapper[] getItemsInActor(NodeWrapper actor_nw) {
+	
+		if (actor_nw.type().equalsIgnoreCase("LC")) {
+			// TODO
+		}
+		else if (actor_nw.type().equalsIgnoreCase("SYNOPTIC")) {
+			// TODO
+		}
+		else if (actor_nw.type().equalsIgnoreCase("CPIOM")) {
+			// TODO
+		}
+		else if (actor_nw.type().equalsIgnoreCase("SESAME")) {
+			// TODO
+		}
+		
+		return null;
+	}
+	
 	
 	/**
 	 * Returns all the actors (either a list of models or a single synoptic)
@@ -45,9 +74,9 @@ public class ActorsFileReader {
 	 * @param actor
 	 * @return
 	 */
-	public ActorWrapper[] getActors(String actor) {
+	public SimItemWrapper[] getItemsInActor(String actor) {
 		
-		ArrayList<ActorWrapper> actorList = new ArrayList<ActorWrapper>();
+		ArrayList<SimItemWrapper> actorList = new ArrayList<SimItemWrapper>();
 		boolean found = false;
 		
 		// search for the given actor in the LCS
@@ -76,7 +105,7 @@ public class ActorsFileReader {
 
 								String v = lc_children.item(j).getAttributes().
 										        getNamedItem("version").getNodeValue();
-								ActorWrapper aw = new ActorWrapper(n, v);
+								SimItemWrapper aw = new SimItemWrapper(n, v);
 								actorList.add(aw);
 							}
 							catch (NullPointerException e) {
@@ -108,7 +137,7 @@ public class ActorsFileReader {
 					if (actor.equals(n)) {
 						String v = syn_nodes.item(i).getAttributes().
 						           getNamedItem("version").getNodeValue();
-						ActorWrapper aw = new ActorWrapper(n, v);
+						SimItemWrapper aw = new SimItemWrapper(n, v);
 						actorList.add(aw);
 						
 						// only one synoptic per synoptic actor! => stop
@@ -123,7 +152,7 @@ public class ActorsFileReader {
 			}
 		}	
 
-		return actorList.toArray(new ActorWrapper[0]);
+		return actorList.toArray(new SimItemWrapper[0]);
 	}
 
 }

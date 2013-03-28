@@ -131,14 +131,14 @@ public class AdvComposite extends Composite {
 		// #### first column with attribute label
 		TableViewerColumn advPropColAttrib = new TableViewerColumn(advPropTableViewer, SWT.NONE);
 		advPropColAttrib.getColumn().setWidth(100);
-		advPropColAttrib.getColumn().setText("Attribute");
+		advPropColAttrib.getColumn().setText("Name");
 
 		advPropColAttrib.setLabelProvider(new AttributeColumnProvider());
 
 		// #### second column with the actual value of each attribute
 		TableViewerColumn advPropColValue = new TableViewerColumn(advPropTableViewer, SWT.NONE);
 		advPropColValue.getColumn().setWidth(100);
-		advPropColValue.getColumn().setText("Value");
+		advPropColValue.getColumn().setText("Version");
 
 		advPropColValue.setLabelProvider(new ValueColumnProvider());
 				

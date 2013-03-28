@@ -30,7 +30,7 @@ public class NodeWrapper{
 
 	public String actorName() {
 		
-		String actor_name="Unnamed";
+		String actor_name="???";
 		try {
 			actor_name = domNode.getAttributes().
 			                 getNamedItem("name").getNodeValue();
@@ -39,6 +39,19 @@ public class NodeWrapper{
 			//node has no name, fuck it
 		}
 		return actor_name;
+	}
+	
+	public String type() { 
+		
+		String type = "???";
+		try {
+			type = domNode.getAttributes().
+			                 getNamedItem("type").getNodeValue();
+		}
+		catch (NullPointerException e) {
+			//node has no type, fuck it
+		}
+		return type;
 	}
 	
 	public boolean isEnvironment() {
