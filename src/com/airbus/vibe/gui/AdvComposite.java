@@ -75,6 +75,7 @@ public class AdvComposite extends Composite {
 	}
 
 	public void setActorsReader(ActorsFileReader actorsReader) {
+		System.out.println("setting actorsReader to " + actorsReader.hashCode());
 		this.actorsReader = actorsReader;
 	}
 
@@ -140,14 +141,7 @@ public class AdvComposite extends Composite {
 		advPropColValue.getColumn().setText("Value");
 
 		advPropColValue.setLabelProvider(new ValueColumnProvider());
-
-		
-		
-		// TESTING
-		String[] toto = {"one", "two", "three", "four"};
-		advPropTableViewer.setInput(toto);
-		
-		
+				
 	}
 
 	@Override

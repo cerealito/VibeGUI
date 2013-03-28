@@ -2,18 +2,20 @@ package com.airbus.vibe.gui;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 
+import com.airbus.vibe.dalo.ActorWrapper;
+
 public class AttributeColumnProvider extends ColumnLabelProvider {
 
 	@Override
 	public String getText(Object element) {
+		
 		//cast input element to desired class...
-		// return somthing form the class
-		
-		System.out.println("     got " + element.getClass());
-		
-		
-		return (String)element;
-		
+		if (element instanceof ActorWrapper) {
+			return ((ActorWrapper)element).name;
+		}
+		else {
+			return null;
+		} 
 	}
 	
 }
