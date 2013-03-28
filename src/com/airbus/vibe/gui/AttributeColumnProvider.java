@@ -2,7 +2,7 @@ package com.airbus.vibe.gui;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 
-import com.airbus.vibe.dalo.ActorWrapper;
+import com.airbus.vibe.dalo.SimItemWrapper;
 
 public class AttributeColumnProvider extends ColumnLabelProvider {
 
@@ -10,8 +10,8 @@ public class AttributeColumnProvider extends ColumnLabelProvider {
 	public String getText(Object element) {
 		
 		//cast input element to desired class...
-		if (element instanceof ActorWrapper) {
-			return ((ActorWrapper)element).name;
+		if (element instanceof SimItemWrapper) {
+			return ((SimItemWrapper)element).name;
 		}
 		else {
 			return null;

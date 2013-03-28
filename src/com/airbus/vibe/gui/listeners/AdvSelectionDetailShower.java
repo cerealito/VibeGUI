@@ -7,7 +7,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.widgets.Composite;
 
-import com.airbus.vibe.dalo.ActorWrapper;
+import com.airbus.vibe.dalo.SimItemWrapper;
 import com.airbus.vibe.dalo.ActorsFileReader;
 import com.airbus.vibe.dalo.NodeWrapper;
 import com.airbus.vibe.gui.TsarGUI;
@@ -32,7 +32,7 @@ public class AdvSelectionDetailShower implements ISelectionChangedListener {
 			this.actorsReader = gui.getAdvancedComposite().getActorsReader();
 
 			if (null != this.actorsReader ) {
-				ActorWrapper[] inputItems = this.actorsReader.getActors(nw.actorName());
+				SimItemWrapper[] inputItems = this.actorsReader.getItemsInActor(nw.actorName());
 				gui.getAdvPropTableViewer().setInput(inputItems);
 			}
 			else {
