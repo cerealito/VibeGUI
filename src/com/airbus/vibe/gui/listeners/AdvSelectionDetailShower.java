@@ -32,7 +32,7 @@ public class AdvSelectionDetailShower implements ISelectionChangedListener {
 			this.actorsReader = gui.getAdvancedComposite().getActorsReader();
 
 			if (null != this.actorsReader ) {
-				SimItemWrapper[] inputItems = this.actorsReader.getItemsInActor(nw.actorName());
+				SimItemWrapper[] inputItems = this.actorsReader.getItemsInActor(nw);
 				gui.getAdvPropTableViewer().setInput(inputItems);
 			}
 			else {
