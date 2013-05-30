@@ -56,8 +56,8 @@ public class SWTLabelProvider extends StyledCellLabelProvider {
 
 				// this is quite mysterious to me: we get an array of FontData objects from the current "cell"
 				final FontData[] italicFontData = getModifiedFontData(cell.getFont().getFontData(), SWT.ITALIC);
-
-				text.append("     [" + nw.type() + "] ", new Styler() {
+				
+				text.append("    [" + nw.type() + "]", new Styler() {
 
 					public void applyStyles(TextStyle textStyle) {
 						// this is another mysterious thing: we create a (single) font
@@ -65,8 +65,10 @@ public class SWTLabelProvider extends StyledCellLabelProvider {
 						// we appended. go figure.
 						Font italicFont = new Font(Display.getCurrent(), italicFontData);
 						textStyle.font = italicFont;
+						textStyle.foreground = Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GRAY);
 					}
 				});
+				
 			}
 		} 
 
