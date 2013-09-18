@@ -7,16 +7,12 @@ import com.airbus.vibe.dalo.PlatformWriter;
 
 public class Controller {
 	
-	// TODO: put this constants in the new config class???
+	// Put this constants in the Constants class? : no these concern the controller only
 	private static final String KILL_ALL    = "kill_all";
 	private static final String LAUNCH_SIMU = "launch_simu";
 	private static final String LAUNCH_TSAR = "launch_tsar";
 	private static final String ADV_PLATXML = "platform_xml";
-	private static final String APP_DIR     = Constants.app_dir;
-	private static final String DALO_EXE    = "/home/SIMU_VIBE/COMMON/DALO/V_CURRENT/dalo.py";
-
-
-	
+		
 	TsarGUI gui = null;
 	String  app = "";
 	String  platform = "";
@@ -53,7 +49,7 @@ public class Controller {
 		File scenario = new File(s_param);
 		String f;
 		
-		f = generate_scenario_launcher(app, platform, scenario.getName());
+		f = generate_scenario_launcher(this.app, this.platform, s_param);
 
 		String cmd = cnf.get("tmp_dir") + "/" + LAUNCH_TSAR + this.hashCode();
 		ProcessWrapper out = new ProcessWrapper(cmd,
@@ -186,10 +182,10 @@ public class Controller {
 			w.write("echo working on $PWD");
 			w.newLine();
 			
-			String af = APP_DIR + "/" + app + "/Applications_" + app + ".xml";
+			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
 			
 			
-			w.write("python -O " + DALO_EXE  +
+			w.write("python -O " + Constants.dalo_exe  +
 					" -p " + platform_file_p +
 					" -a " + af              +
 					" -P " + platform        +
@@ -280,10 +276,10 @@ public class Controller {
 			w.write("echo working on $PWD");
 			w.newLine();
 			
-			String af = APP_DIR + "/" + app + "/Applications_" + app + ".xml";
-			String pf = APP_DIR + "/" + app + "/Platforms_" + app + ".xml";
+			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
+			String pf = Constants.app_dir + "/" + app + "/Platforms_" + app + ".xml";
 			
-			w.write("python -O " + DALO_EXE +
+			w.write("python -O " + Constants.dalo_exe +
 					" -p " + pf             +
 					" -a " + af             +
 					" -P " + platform       +
@@ -339,10 +335,10 @@ public class Controller {
 			w.write("echo working on $PWD");
 			w.newLine();
 			
-			String af = APP_DIR + "/" + app + "/Applications_" + app + ".xml";
-			String pf = APP_DIR + "/" + app + "/Platforms_" + app + ".xml";
+			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
+			String pf = Constants.app_dir + "/" + app + "/Platforms_" + app + ".xml";
 			
-			w.write("python -O " + DALO_EXE +
+			w.write("python -O " + Constants.dalo_exe +
 					" -p " + pf             +
 					" -a " + af             +
 					" -P " + platform       +
@@ -401,13 +397,8 @@ public class Controller {
 			w.write("echo working on $PWD");
 			w.newLine();
 			
-			w.write("cd " + APP_DIR + app + "/" + platform);
-			w.newLine();
 			
-			w.write("echo working on $PWD");
-			w.newLine();
-			
-			w.write("../SCRIPTS/launch_TSARIN.ksh " + scenario);
+			w.write(Constants.tsar_exe + " " + platform + " " + scenario);
 			w.newLine();
 			
 			w.newLine();
