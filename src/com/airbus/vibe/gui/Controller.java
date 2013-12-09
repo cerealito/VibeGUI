@@ -78,7 +78,7 @@ public class Controller {
 		System.out.println("Advanced launch!!!");
 		// trim the file according to adv viewer selection
 		if (this.advPlatformWriter == null) {
-			// empty platform or methor called Before
+			// empty platform or method called Before
 			// this.setAdvLauncPW
 			System.out.println("empty platform?");
 		}
