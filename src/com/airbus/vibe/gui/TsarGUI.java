@@ -387,14 +387,15 @@ public class TsarGUI {
 
 		//######### combo app & combo platform
 		comboApp = new Combo(simuComposite, SWT.READ_ONLY);
-		GridData gd_comboApp = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		GridData gd_comboApp = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_comboApp.heightHint = 29;
-		gd_comboApp.widthHint = 132;
+		gd_comboApp.widthHint = 220;
 		comboApp.setLayoutData(gd_comboApp);
 
 		comboPlatform = new Combo(simuComposite, SWT.READ_ONLY);
-		GridData gd_comboPlatform = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_comboPlatform.widthHint = 155;
+		GridData gd_comboPlatform = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_comboPlatform.heightHint = 29;
+		gd_comboPlatform.widthHint = 220;
 		comboPlatform.setLayoutData(gd_comboPlatform);
 		
 		
@@ -409,8 +410,8 @@ public class TsarGUI {
 
 
 		//######### Button Launch 
-		btnLaunch = new Button(simuComposite, SWT.NONE);
-		GridData gd_btnLaunch = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
+		btnLaunch = new Button(simuComposite, SWT.CENTER);
+		GridData gd_btnLaunch = new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1);
 		gd_btnLaunch.heightHint = 34;
 		gd_btnLaunch.widthHint = 152;
 		btnLaunch.setLayoutData(gd_btnLaunch);
