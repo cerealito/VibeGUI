@@ -35,6 +35,7 @@ public class AdvModeActivator implements Listener {
 			// #####################################################
 			// activate the contents of the adv tab on selection:			
 			gui.getAdvLblCurrentPlatform().setEnabled(true);
+			gui.getBtn___().setEnabled(true);
 			gui.getAdvLblInfo1().setEnabled(true);
 			gui.getAdvTreeViewer().getTree().setEnabled(true);
 			gui.getSimuFolder().setSelection(gui.getTabAdvanced());
@@ -77,6 +78,7 @@ public class AdvModeActivator implements Listener {
 			//gui.getAdvTreeViewer().getTree().clearAll(true); // not needed because input is null
 			gui.getAdvLblCurrentPlatform().setEnabled(false);
 			gui.getAdvLblInfo1().setEnabled(false);
+			gui.getBtn___().setEnabled(false);
 			gui.getAdvLblSelectComponents().setEnabled(false);
 			//gui.getAdvTreeViewer().getTree().setEnabled(false); // not needed because input is null
 			gui.getSimuFolder().setSelection(gui.getTabOutput());

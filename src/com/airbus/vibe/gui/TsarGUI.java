@@ -2,11 +2,14 @@ package com.airbus.vibe.gui;
 
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -16,7 +19,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.ScrollBar;
@@ -27,6 +32,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import com.airbus.vibe.dalo.NodeWrapper;
@@ -77,6 +83,7 @@ public class TsarGUI {
 
 	private Combo comboApp;
 	private Combo comboPlatform;
+	private Button btnRefreshPlatforms; 
 
 	private Button checkBoxAdvMode;
 	
@@ -100,7 +107,7 @@ public class TsarGUI {
 	private Composite scenarioComposite;		
 	
 	private Combo      comboScenario;
-	private Button     btnBrowse;	
+	private Button     btnBrowse;
 
 	private TabFolder scenarioFolder;
 		//##################################################################
@@ -217,6 +224,10 @@ public class TsarGUI {
 		return comboPlatform;
 	}
 	
+	public Button getBtn___() {
+		return btnRefreshPlatforms;
+	}
+
 	public AdvComposite getAdvancedComposite() {
 		return advancedComposite;
 	}
@@ -230,7 +241,7 @@ public class TsarGUI {
 		//return advLblInfo1;
 		return advancedComposite.getAdvLblInfo1();
 	}
-
+	
 	public Label getAdvLblSelectComponents() {
 		//return advLblSelectComponents;
 		return advancedComposite.getAdvLblSelectComponents();
@@ -399,15 +410,19 @@ public class TsarGUI {
 		comboPlatform.setLayoutData(gd_comboPlatform);
 		
 		
+		btnRefreshPlatforms = new Button(simuComposite,SWT.NONE);
+		btnRefreshPlatforms.setImage(SWTResourceManager.getImage(TsarGUI.class,
+				"/com/airbus/vibe/gui/icons/view-refresh.png"));
+		btnRefreshPlatforms.setEnabled(false);
+		btnRefreshPlatforms.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		
-		new Label(simuComposite, SWT.NONE);
-		new Label(simuComposite, SWT.NONE);
+		
 		
 		checkBoxAdvMode = new Button(simuComposite, SWT.CHECK);
 		checkBoxAdvMode.setText("Advanced Mode");
+		
 		new Label(simuComposite, SWT.NONE);
-
-
+	
 
 		//######### Button Launch 
 		btnLaunch = new Button(simuComposite, SWT.CENTER);
@@ -492,41 +507,7 @@ public class TsarGUI {
 			
 		advancedComposite = new AdvComposite(simuFolder, SWT.NONE);
 		tabAdvanced.setControl(advancedComposite);
-		
-//		advancedComposite.setLayout(new GridLayout(2, false));
-//		
-//		advLblInfo1 = new Label(advancedComposite, SWT.NONE);
-//		advLblInfo1.setEnabled(false);
-//		advLblInfo1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
-//		advLblInfo1.setText("Select an application description...");
-//		new Label(advancedComposite, SWT.NONE);
-//		
-//		advLblCurrentFile = new Label(advancedComposite, SWT.NONE);
-//		advLblCurrentFile.setEnabled(false);
-//		advLblCurrentFile.setForeground(SWTResourceManager.getColor(0, 51, 255));
-//		
-//		advLblCurrentFile.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-//		new Label(advancedComposite, SWT.NONE);
-//
-//		
-//		
-//		advLblSelectComponents = new Label(advancedComposite, SWT.NONE);
-//		advLblSelectComponents.setText("Select components  to launch:");
-//		new Label(advancedComposite, SWT.NONE);
-//
-//		// ######### the fucking TREE
-//		advTreeViewer = new CheckboxTreeViewer(advancedComposite);
-//		Tree tree = advTreeViewer.getTree();
-//		tree.setEnabled(false);
-//		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
-//				
-//		advTreeViewer.setContentProvider(new SWTTreeProvider());
-//		advTreeViewer.setLabelProvider(new SWTLabelProvider());
-//					
-//		advPropTableViewer = new TableViewer(advancedComposite, SWT.BORDER | SWT.FULL_SELECTION);
-//		advPropTable = advPropTableViewer.getTable();
-//		advPropTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-		
+
 		//######################################################################
 		//######################################################################
 		//####                    SECOND Tab: scenario                      ####
@@ -727,7 +708,21 @@ public class TsarGUI {
 		AdvModeActivator myActivator = new AdvModeActivator(this);
 		comboPlatform.addListener(SWT.Selection, myActivator);
 		checkBoxAdvMode.addListener(SWT.Selection, myActivator);
-		
+		// re-use the advModeActivator to re-read the xml file and re-feed it to the tree viewer:
+		btnRefreshPlatforms.addListener(SWT.Selection, myActivator);
+		// add a listener to the button so that it clears the selection and the details shown:
+		btnRefreshPlatforms.addListener(SWT.Selection, new Listener() {
+			// TODO: remember the previous selection?
+			// TODO: put this in the listeners package.
+			public void handleEvent(Event arg0) {
+				// this:
+				//    advancedComposite.getAdvTreeViewer().getTree().notifyListeners(SWT.Selection, new Event());
+				// does the same that this:
+				advancedComposite.getAdvTreeViewer().setSelection(null);			
+				advancedComposite.getAdvPropTableViewer().setInput(null);
+
+			}
+		});
 		
 		comboPlatform.addListener(SWT.Selection, new LaunchButtonEnabler(this));
 		
