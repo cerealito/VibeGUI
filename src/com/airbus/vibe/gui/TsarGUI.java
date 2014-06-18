@@ -47,6 +47,7 @@ import com.airbus.vibe.gui.listeners.ComboPlatFiller;
 import com.airbus.vibe.gui.listeners.ComboScenarioAction;
 import com.airbus.vibe.gui.listeners.EditorOpener;
 import com.airbus.vibe.gui.listeners.EditorRefresher;
+import com.airbus.vibe.gui.listeners.FileRefresher;
 import com.airbus.vibe.gui.listeners.GuiAutoScroller;
 import com.airbus.vibe.gui.listeners.GuiScroller;
 import com.airbus.vibe.gui.listeners.LaunchButtonEnabler;
@@ -224,7 +225,7 @@ public class TsarGUI {
 		return comboPlatform;
 	}
 	
-	public Button getBtn___() {
+	public Button getBtnRefreshPlatforms() {
 		return btnRefreshPlatforms;
 	}
 
@@ -708,21 +709,8 @@ public class TsarGUI {
 		AdvModeActivator myActivator = new AdvModeActivator(this);
 		comboPlatform.addListener(SWT.Selection, myActivator);
 		checkBoxAdvMode.addListener(SWT.Selection, myActivator);
-		// re-use the advModeActivator to re-read the xml file and re-feed it to the tree viewer:
-		btnRefreshPlatforms.addListener(SWT.Selection, myActivator);
-		// add a listener to the button so that it clears the selection and the details shown:
-		btnRefreshPlatforms.addListener(SWT.Selection, new Listener() {
-			// TODO: remember the previous selection?
-			// TODO: put this in the listeners package.
-			public void handleEvent(Event arg0) {
-				// this:
-				//    advancedComposite.getAdvTreeViewer().getTree().notifyListeners(SWT.Selection, new Event());
-				// does the same that this:
-				advancedComposite.getAdvTreeViewer().setSelection(null);			
-				advancedComposite.getAdvPropTableViewer().setInput(null);
-
-			}
-		});
+		
+		btnRefreshPlatforms.addListener(SWT.Selection, new FileRefresher(this));
 		
 		comboPlatform.addListener(SWT.Selection, new LaunchButtonEnabler(this));
 		
