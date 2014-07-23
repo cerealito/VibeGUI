@@ -62,24 +62,7 @@ public class Main {
 			} catch (IOException e) {
 				System.out.println("\n");
 				// perhaps not a vibe host
-				// add dialog
-				
-				Status status = new Status(IStatus.ERROR,
-						                   "TSAR GUI",
-						                   0,
-						                   "This program should be run on " +
-						                   "a Linux host",
-						                   null);
-				
-				ErrorDialog.openError(myGUI.getShell(),
-						              "Error",
-						              "Not in Linux",
-						              status);
-				
-				System.err.println("Can not execute. " +
-						"Maybe you're not in a vibe host?");
-				Tools.removeTmpFile(p.getScript());
-				System.exit(-1);
+				System.out.println("warning: not a vibe host");
 			}
 			// if we get here, everything seems ok			
 			
@@ -103,19 +86,21 @@ public class Main {
 		
 		Config myConfig = Config.getConfig();
 		
+		myConfig.printConf();
+		
 		File tmpDir_f   = new File(myConfig.get("tmp_dir"));
 		
 		if (tmpDir_f.exists()) {
 			//exists but is not a dir
 			if( ! tmpDir_f.isDirectory()) {
 		
-				System.out.println("ERROR!");
+				System.err.println("Error: " + tmpDir_f.toString() + " is not a directory");
 				System.exit(-1);
 			}
 			//exists but can not r/w
 			if ( !tmpDir_f.canWrite() ||
 				 !tmpDir_f.canRead()) {
-				System.out.println("ERROR!");
+				System.err.println("Error: insufficient permissions for " + tmpDir_f.toString());
 				System.exit(-1);				
 			}
 		}

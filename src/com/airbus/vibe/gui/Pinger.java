@@ -53,7 +53,7 @@ public class Pinger extends Thread {
     		}
 
     		catch (IOException e) {
-    			System.err.println("Check permissions");
+    			System.err.println(e.getMessage());
     			Tools.removeTmpFile(this.script);
     		}
 
@@ -84,13 +84,14 @@ public class Pinger extends Thread {
         }
         // if the returned number is 0 (zero chars);
         // there is a big big chance we are OFFLINE
-    	if ( output_l.trim().equals("0")) {
-			online = false;
+        String firstToken = output_l.split(",")[0];
+    	if ( firstToken.equals(Constants.cm_exe_name) ) {
+			online = true;
 		}
     	else {
     		// anything else would mean there is at least some 
     		// dss or d2b process going on
-    		online = true;
+    		online = false;
     	}
 
     	
@@ -107,8 +108,8 @@ public class Pinger extends Thread {
 		
 		Config cnf = Config.getConfig();
 
-		final String cmd = "ps -e | grep -ie d2b -ie dss | grep -v grep | wc -c";
-		String f_name = cnf.get("tmp_dir") + "/" + PING_SIMU + this.hashCode();
+		final String cmd = Constants.ping_cmd;
+		String f_name = cnf.get("tmp_dir") + "/" + PING_SIMU + this.hashCode() + ".bat";
 
 		File launch_f = new File(f_name);
 
@@ -120,7 +121,7 @@ public class Pinger extends Thread {
 			launch_f.createNewFile();
 
 			BufferedWriter w = new BufferedWriter(new FileWriter(launch_f));
-			w.write("#!/bin/ksh");
+			w.write("@echo off");
 			w.newLine();
 			w.write(cmd);
 			w.newLine();

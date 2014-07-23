@@ -51,7 +51,7 @@ public class Controller {
 		
 		f = generate_scenario_launcher(this.app, this.platform, s_param);
 
-		String cmd = cnf.get("tmp_dir") + "/" + LAUNCH_TSAR + this.hashCode();
+		String cmd = cnf.get("tmp_dir") + "/" + LAUNCH_TSAR + this.hashCode() + ".bat";
 		ProcessWrapper out = new ProcessWrapper(cmd,
 				this.gui.getTsarText(),
 				this.gui);
@@ -98,7 +98,7 @@ public class Controller {
 			
 			f = generate_adv_launcher(this.app, this.platform, p_xml);
 			
-			String cmd = cnf.get("tmp_dir") + "/" + LAUNCH_SIMU + this.hashCode();
+			String cmd = cnf.get("tmp_dir") + "/" + LAUNCH_SIMU + this.hashCode() + ".bat";
 			ProcessWrapper out = new ProcessWrapper(cmd,
 					                                this.gui.getSimuText(),
 					                                this.gui);
@@ -124,7 +124,7 @@ public class Controller {
 		
 		f = generate_simu_launcher(this.app, this.platform);
 		
-		String cmd = cnf.get("tmp_dir") + "/" + LAUNCH_SIMU + this.hashCode();
+		String cmd = cnf.get("tmp_dir") + "/" + LAUNCH_SIMU + this.hashCode() + ".bat";
 		ProcessWrapper out = new ProcessWrapper(cmd,
 				this.gui.getSimuText(),
 				this.gui);
@@ -147,7 +147,7 @@ public class Controller {
 		
 		f = generate_kill_all(this.app, this.platform);
 
-		String cmd = cnf.get("tmp_dir") + "/" + KILL_ALL + this.hashCode();
+		String cmd = cnf.get("tmp_dir") + "/" + KILL_ALL + this.hashCode() + ".bat";
 		ProcessWrapper out = new ProcessWrapper(cmd,
 				this.gui.getSimuText(),
 				this.gui);
@@ -164,7 +164,7 @@ public class Controller {
 	 */
 	private String generate_adv_launcher(String app, String platform, String platform_file_p) {
 		
-		String f_name = cnf.get("tmp_dir") + "/" + LAUNCH_SIMU + this.hashCode();
+		String f_name = cnf.get("tmp_dir") + "/" + LAUNCH_SIMU + this.hashCode() + ".bat";
 		
 		File launch_f = new File(f_name);
 
@@ -176,10 +176,7 @@ public class Controller {
 			launch_f.createNewFile();
 
 			BufferedWriter w = new BufferedWriter(new FileWriter(launch_f));
-			w.write("#!/bin/ksh");
-			w.newLine();
-
-			w.write("echo working on $PWD");
+			w.write("@echo off");
 			w.newLine();
 			
 			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
@@ -258,7 +255,7 @@ public class Controller {
 	 */
 	private String generate_simu_launcher(String app, String platform) {
 		
-		String f_name = cnf.get("tmp_dir") + "/" + LAUNCH_SIMU + this.hashCode();
+		String f_name = cnf.get("tmp_dir") + "/" + LAUNCH_SIMU + this.hashCode() + ".bat";
 		
 		File launch_f = new File(f_name);
 
@@ -270,10 +267,7 @@ public class Controller {
 			launch_f.createNewFile();
 
 			BufferedWriter w = new BufferedWriter(new FileWriter(launch_f));
-			w.write("#!/bin/ksh");
-			w.newLine();
-
-			w.write("echo working on $PWD");
+			w.write("@echo off");
 			w.newLine();
 			
 			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
@@ -317,7 +311,7 @@ public class Controller {
 	 */
 	private String generate_kill_all(String app, String platform) {
 
-		String f_name = cnf.get("tmp_dir") + "/" + KILL_ALL + this.hashCode();
+		String f_name = cnf.get("tmp_dir") + "/" + KILL_ALL + this.hashCode() + ".bat";
 		
 		File launch_f = new File(f_name);
 
@@ -329,10 +323,8 @@ public class Controller {
 			launch_f.createNewFile();
 
 			BufferedWriter w = new BufferedWriter(new FileWriter(launch_f));
-			w.write("#!/bin/ksh");
-			w.newLine();
+			w.write("@echo off");
 
-			w.write("echo working on $PWD");
 			w.newLine();
 			
 			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
@@ -377,7 +369,7 @@ public class Controller {
 			                                   String platform,
 			                                   String scenario) {
 		
-		String f_name = cnf.get("tmp_dir") + "/" + LAUNCH_TSAR + this.hashCode();
+		String f_name = cnf.get("tmp_dir") + "/" + LAUNCH_TSAR + this.hashCode() + ".bat";
 		
 		File launch_f = new File(f_name);
 
@@ -391,10 +383,8 @@ public class Controller {
 
 
 			BufferedWriter w = new BufferedWriter(new FileWriter(launch_f));
-			w.write("#!/bin/ksh");
-			w.newLine();
+			w.write("@echo off");
 
-			w.write("echo working on $PWD");
 			w.newLine();
 			
 			

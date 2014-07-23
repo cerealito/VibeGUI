@@ -14,8 +14,7 @@ public class Tools {
 			p.waitFor();
 		}
 		catch (Exception e) {
-			System.err.println("Error setting permissions");
-			System.err.println("Error: " + e.getMessage());
+			System.out.println("Tools.chmod is meaningless in windows");
 		}		
 	}
 	

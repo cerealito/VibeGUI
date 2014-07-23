@@ -24,9 +24,9 @@ public final class Config {
 	
 		if (home_str == null) {
 			//sensible default
-			home_str = "/tmp/";
+			home_str = Constants.fallback_home;
 		}
-	
+
 		// 1. the tmp dir
 		dict.put("tmp_dir", home_str + "/.tsarGUI");
 		
@@ -78,7 +78,7 @@ public final class Config {
 
 	}
 	
-	private static void printConf() {
+	public static void printConf() {
 		for (String s : dict.keySet()) {
 			System.out.println(s + ":\t" + dict.get(s));
 		}

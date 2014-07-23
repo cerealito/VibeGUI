@@ -401,13 +401,13 @@ public class TsarGUI {
 		comboApp = new Combo(simuComposite, SWT.READ_ONLY);
 		GridData gd_comboApp = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_comboApp.heightHint = 29;
-		gd_comboApp.widthHint = 220;
+		gd_comboApp.widthHint = 210;
 		comboApp.setLayoutData(gd_comboApp);
 
 		comboPlatform = new Combo(simuComposite, SWT.READ_ONLY);
 		GridData gd_comboPlatform = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_comboPlatform.heightHint = 29;
-		gd_comboPlatform.widthHint = 220;
+		gd_comboPlatform.widthHint = 210;
 		comboPlatform.setLayoutData(gd_comboPlatform);
 		
 		
@@ -442,7 +442,7 @@ public class TsarGUI {
 		btnKill = new Button(simuComposite, SWT.NONE);
 		GridData gd_btnKill = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
 		gd_btnKill.heightHint = 34;
-		gd_btnKill.widthHint = 118;
+		gd_btnKill.widthHint = 110;
 		btnKill.setLayoutData(gd_btnKill);
 
 		//we can invoke kill at any time, including from the very start
