@@ -182,7 +182,7 @@ public class Controller {
 			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
 			
 			
-			w.write("python -O " + Constants.dalo_exe  +
+			w.write("python " + Constants.dalo_exe  +
 					" -p " + platform_file_p +
 					" -a " + af              +
 					" -P " + platform        +
@@ -273,7 +273,7 @@ public class Controller {
 			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
 			String pf = Constants.app_dir + "/" + app + "/Platforms_" + app + ".xml";
 			
-			w.write("python -O " + Constants.dalo_exe +
+			w.write("python " + Constants.dalo_exe +
 					" -p " + pf             +
 					" -a " + af             +
 					" -P " + platform       +
@@ -330,7 +330,7 @@ public class Controller {
 			String af = Constants.app_dir + "/" + app + "/Applications_" + app + ".xml";
 			String pf = Constants.app_dir + "/" + app + "/Platforms_" + app + ".xml";
 			
-			w.write("python -O " + Constants.dalo_exe +
+			w.write("python " + Constants.dalo_exe +
 					" -p " + pf             +
 					" -a " + af             +
 					" -P " + platform       +
