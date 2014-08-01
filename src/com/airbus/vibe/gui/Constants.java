@@ -9,6 +9,6 @@ public class Constants {
 	public static final String tsar_exe = ksh_d + "/launch_TSARIN_4.ksh";
 	public static final String fallback_home = vibe_d + "/TMP";
 	public static final String cm_exe_name = "\"D2B_CommunityMgr.exe\"";
-	public static final String ping_cmd ="tasklist /FO csv /nh /FI \"IMAGENAME eq D2B_CommunityMgr.exe\"";
+	public static final String ping_cmd ="task /FO csv /nh /FI \"IMAGENAME eq D2B_CommunityMgr.exe\"";
 	
 }

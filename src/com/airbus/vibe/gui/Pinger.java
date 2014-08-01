@@ -82,18 +82,25 @@ public class Pinger extends Thread {
         	if ( ! output_l.trim().equals(""))      	
         		break;
         }
-        // if the returned number is 0 (zero chars);
-        // there is a big big chance we are OFFLINE
-        String firstToken = output_l.split(",")[0];
-    	if ( firstToken.equals(Constants.cm_exe_name) ) {
-			online = true;
-		}
-    	else {
-    		// anything else would mean there is at least some 
-    		// dss or d2b process going on
+        
+        try {
+	        // if the returned number is 0 (zero chars);
+	        // there is a big big chance we are OFFLINE
+	        String firstToken = output_l.split(",")[0];
+	    	if ( firstToken.equals(Constants.cm_exe_name) ) {
+				online = true;
+			}
+	    	else {
+	    		// anything else would mean there is at least some 
+	    		// dss or d2b process going on
+	    		online = false;
+	    	}
+	    }
+    	catch (NullPointerException e) {
+    		// most likely the ping command failed because TOP or tasklist
+    		// are not installed or accessible. fuck it.
     		online = false;
     	}
-
     	
     	p.destroy();
     	

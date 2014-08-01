@@ -501,6 +501,14 @@ public class TsarGUI {
 		// auto scrolling
 		simuText.addModifyListener(new GuiAutoScroller(simuText));
 
+		// clear menu on right click
+		Menu simuTextMenu = new Menu(simuText);
+		MenuItem itmClearSimu = new MenuItem(simuTextMenu, SWT.FLAT);
+		itmClearSimu.setText("Clear");
+		itmClearSimu.addListener(SWT.Selection, new TextClearer(simuText));
+				
+		simuText.setMenu(simuTextMenu);
+		
 		//######################################################################
 		//#### #### Advanced SubTAB
 		tabAdvanced = new TabItem(simuFolder, SWT.NONE);
@@ -514,6 +522,7 @@ public class TsarGUI {
 		//####                    SECOND Tab: scenario                      ####
 		//######################################################################
 		//######################################################################
+/*
 		tabScenario = new TabItem(mainFolder, SWT.NONE);
 		tabScenario.setText("Scenario");
 		scenarioComposite = new Composite(mainFolder, SWT.NONE);
@@ -667,14 +676,8 @@ public class TsarGUI {
 		itmClearTsar.addListener(SWT.Selection, new TextClearer(tsarText));
 				
 		tsarText.setMenu(tsarTextMenu);
-		
-		Menu simuTextMenu = new Menu(simuText);
-		MenuItem itmClearSimu = new MenuItem(simuTextMenu, SWT.FLAT);
-		itmClearSimu.setText("Clear");
-		itmClearSimu.addListener(SWT.Selection, new TextClearer(simuText));
-				
-		simuText.setMenu(simuTextMenu);
 
+*/
 		//**********************************************************************
 		//**********************************************************************
 		//**********************************************************************
@@ -714,16 +717,14 @@ public class TsarGUI {
 		
 		comboPlatform.addListener(SWT.Selection, new LaunchButtonEnabler(this));
 		
-		comboScenario.addModifyListener(new ComboScenarioAction(this));
+		//comboScenario.addModifyListener(new ComboScenarioAction(this));
 		
 		lblStatus.addPaintListener(new OnlineDetector(this));
 
 		
-		btnFire.addListener(SWT.Selection, new btnFireAction(this));
+		//btnFire.addListener(SWT.Selection, new btnFireAction(this));
 
-		btnBrowse.addListener(SWT.Selection, new btnBrowseAction(this));
-		
-		
+		//btnBrowse.addListener(SWT.Selection, new btnBrowseAction(this));
 		
 		// set the combo app to something at the very beggining
 		if (comboApp.getItemCount() > 0) {
